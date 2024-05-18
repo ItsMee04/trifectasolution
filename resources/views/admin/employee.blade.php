@@ -38,12 +38,16 @@
                             <div class="employee-grid-profile">
                                 <div class="profile-head">
                                     <label class="checkboxs">
-                                        <input type="checkbox">
                                         <span class="checkmarks"></span>
                                     </label>
                                     <div class="profile-head-action">
-                                        <span
-                                            class="badge badge-linesuccess text-center w-auto me-1">{{ $item->status }}</span>
+                                        <span class="badge badge-linesuccess text-center w-auto me-1">
+                                            @if ($item->status == 1)
+                                                Active
+                                            @else
+                                                In Active
+                                            @endif
+                                        </span>
                                         <div class="dropdown profile-action">
                                             <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown"
                                                 aria-expanded="false"><i data-feather="more-vertical"
@@ -66,8 +70,8 @@
                                         <img src="{{ asset('assets') }}/img/users/user-01.jpg" alt>
                                     </div>
                                     <h5>EMP ID : POS001</h5>
-                                    <h4>Mitchum Daniel</h4>
-                                    <span>Designer</span>
+                                    <h4>{{ $item->name }}</h4>
+                                    <span>{{ $item->profession->profession }}</span>
                                 </div>
                                 <ul class="department">
                                     <li>
@@ -76,7 +80,7 @@
                                     </li>
                                     <li>
                                         Department
-                                        <span>UI/UX</span>
+                                        <span>{{ $role->role }}</span>
                                     </li>
                                 </ul>
                             </div>
