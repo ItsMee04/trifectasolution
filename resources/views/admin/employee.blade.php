@@ -102,33 +102,52 @@
                     <div class="content">
                         <div class="modal-header border-0 custom-modal-header">
                             <div class="page-title">
-                                <h4>Create Sub Category</h4>
+                                <h4>Create Employee</h4>
                             </div>
                             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body custom-modal-body">
-                            <form action="sub-categories.html">
+                            <form action="employee" method="POST" enctype="multipart/form-data">
+                                @csrf
                                 <div class="mb-3">
-                                    <label class="form-label">Parent Category</label>
-                                    <select class="select">
-                                        <option>Choose Category</option>
-                                        <option>Category</option>
+                                    <label class="form-label">Name</label>
+                                    <input type="text" name="name" class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Phone</label>
+                                    <input type="text" name="phone" class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Profession</label>
+                                    <select class="select" name="profession">
+                                        @foreach ($profession as $itemprofession)
+                                            <option value="{{ $itemprofession->id }}">{{ $itemprofession->profession }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Category Name</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Category Code</label>
-                                    <input type="text" class="form-control">
-                                </div>
                                 <div class="mb-3 input-blocks">
-                                    <label class="form-label">Description</label>
+                                    <label class="form-label">Address</label>
                                     <textarea class="form-control"></textarea>
                                 </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Signature</label>
+                                    <div class="custom-file-container" data-upload-id="myFirstImage">
+                                        <label>Signature(PNG/JPG) <a href="javascript:void(0)"
+                                                class="custom-file-container__image-clear" title="Clear Image">x</a></label>
+                                        <label class="custom-file-container__custom-file-1">
+                                            <input type="file"
+                                                class="custom-file-container__custom-file__custom-file-input"
+                                                name="employeesignature" accept="image/*">
+                                            <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+                                            <span class="custom-file-container__custom-file__custom-file-control"></span>
+                                        </label>
+                                        <div class="custom-file-container__image-preview"></div>
+                                    </div>
+                                </div>
+
                                 <div class="mb-0">
                                     <div
                                         class="status-toggle modal-status d-flex justify-content-between align-items-center">
