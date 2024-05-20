@@ -36,30 +36,6 @@
         <div class="account-content">
             <div class="login-wrapper login-new">
                 <div class="container">
-
-                    @if ($errors->any())
-                        <!-- Alert -->
-                        <div class="alert alert-danger border border-danger mb-0 p-3">
-                            <div class="d-flex align-items-start">
-                                <div class="me-2">
-                                    <i class="feather-alert-octagon flex-shrink-0"></i>
-                                </div>
-                                <div class="text-danger w-100">
-                                    <div class="fw-semibold d-flex justify-content-between">
-                                        <strong>Peringatan !</strong>
-                                        <button type="button" class="btn-close p-0" data-bs-dismiss="alert"
-                                            aria-label="Close"><i class="fas fa-xmark"></i></button>
-                                    </div>
-                                    <div class="fs-12 op-8 mb-1">
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-
                     <div class="login-content user-login">
                         <div class="login-logo">
                             <img src="{{ asset('assets') }}/img/logo.png" alt="img">
@@ -149,6 +125,18 @@
                 {{ session('errors-message') }}
             </div>
         </div>
+        <div id="dangerToastError" class="toast colored-toast bg-danger-transparent" role="alert"
+            aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-danger text-fixed-white">
+                <strong class="me-auto">Peringatan !</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </div>
+        </div>
     </div>
 
     <script src="{{ asset('assets') }}/js/jquery-3.7.1.min.js" type="text/javascript"></script>
@@ -164,6 +152,13 @@
 
     <script src="{{ asset('assets') }}/js/theme-script.js" type="text/javascript"></script>
     <script src="{{ asset('assets') }}/js/script.js" type="text/javascript"></script>
+    @if ($errors->any())
+        <script>
+            const dangertoastExamplee = document.getElementById('dangerToastError')
+            const toast = new bootstrap.Toast(dangertoastExamplee)
+            toast.show()
+        </script>
+    @endif
     @if (session('success-message'))
         <script>
             const successtoastExample = document.getElementById('successToast')

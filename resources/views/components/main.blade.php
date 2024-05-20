@@ -88,6 +88,18 @@
                 {{ session('errors-message') }}
             </div>
         </div>
+        <div id="dangerToastError" class="toast colored-toast bg-danger-transparent" role="alert"
+            aria-live="assertive" aria-atomic="true">
+            <div class="toast-header bg-danger text-fixed-white">
+                <strong class="me-auto">Peringatan !</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </div>
+        </div>
     </div>
 
     <script src="{{ asset('assets') }}/js/jquery-3.7.1.min.js" type="text/javascript"></script>
@@ -125,6 +137,14 @@
 
     <script src="{{ asset('assets') }}/js/theme-script.js" type="text/javascript"></script>
     <script src="{{ asset('assets') }}/js/script.js" type="text/javascript"></script>
+
+    @if ($errors->any())
+        <script>
+            const dangertoastExamplee = document.getElementById('dangerToastError')
+            const toast = new bootstrap.Toast(dangertoastExamplee)
+            toast.show()
+        </script>
+    @endif
 
     @if (session('success-message'))
         <script>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use App\Models\Profession;
 use App\Models\Role;
+use Illuminate\Auth\Events\Attempting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,8 +26,33 @@ class EmployeeController extends Controller
         }
     }
 
-    public function post(Request $request)
+    public function store(Request $request)
     {
-        dd($request);
+        $messages = [
+            'required' => ':attribute wajib di isi !!!',
+        ];
+
+        $credentials = $request->validate([
+            'name'      => 'required',
+            'phone'     => 'required',
+            'profession'    =>  'required',
+            'address'   =>  'required',
+            'status'    =>  'required'
+        ], $messages);
+
+        $newSignature = '';
+        $newAvatar = '';
+        if ($request->file('signature') && $request->file('avatar')) {
+
+            $extension = $request->file('signature')->getClientOriginalExtension();
+            $newSignature = $request->employeename . 'signature' . '-' . now()->timestamp . '.' . $extension;
+            $request->file('employeesignature')->storeAs('employeesignature', $newSignature);
+            $request['employeesignature'] = $newSignature;
+
+            $extension = $request->file('employeeavatar')->getClientOriginalExtension();
+            $newAvatar = $request->employeename . 'avatar' . '-' . now()->timestamp . '.' . $extension;
+            $request->file('employeeavatar')->storeAs('employeeavatar', $newAvatar);
+            $request['employeeavatar'] = $newAvatar;
+        }
     }
 }

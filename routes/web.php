@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
         Route::get('dashboard', [DashboardController::class, 'index']);
 
         Route::get('employee', [EmployeeController::class, 'index']);
-        Route::post('employee', [EmployeeController::class, 'post']);
+        Route::post('employee', [EmployeeController::class, 'store']);
 
         Route::get('logout', [AuthController::class, 'logout']);
     });

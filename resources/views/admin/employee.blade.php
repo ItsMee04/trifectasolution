@@ -3,28 +3,6 @@
 @section('content')
     <div class="page-wrapper">
         <div class="content">
-            @if ($errors->any())
-                <!-- Alert -->
-                <div class="alert alert-danger border border-danger mb-0 p-3">
-                    <div class="d-flex align-items-start">
-                        <div class="me-2">
-                            <i class="feather-alert-octagon flex-shrink-0"></i>
-                        </div>
-                        <div class="text-danger w-100">
-                            <div class="fw-semibold d-flex justify-content-between">
-                                <strong>Peringatan !</strong>
-                                <button type="button" class="btn-close p-0" data-bs-dismiss="alert" aria-label="Close"><i
-                                        class="fas fa-xmark"></i></button>
-                            </div>
-                            <div class="fs-12 op-8 mb-1">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endif
             <div class="page-header">
                 <div class="add-item d-flex">
                     <div class="page-title">
