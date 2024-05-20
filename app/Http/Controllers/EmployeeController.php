@@ -24,4 +24,9 @@ class EmployeeController extends Controller
             return view('kepala.employee');
         }
     }
+
+    public function post(Request $request)
+    {
+        dd($request);
+    }
 }

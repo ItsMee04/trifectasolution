@@ -119,6 +119,8 @@
     <script src="{{ asset('assets') }}/plugins/sweetalert/sweetalert2.all.min.js" type="text/javascript"></script>
     <script src="{{ asset('assets') }}/plugins/sweetalert/sweetalerts.min.js" type="text/javascript"></script>
 
+    <script src="{{ asset('assets') }}/js/modal.js" type="text/javascript"></script>
+
     <script src="{{ asset('assets') }}/plugins/fileupload/fileupload.min.js"></script>
 
     <script src="{{ asset('assets') }}/js/theme-script.js" type="text/javascript"></script>
