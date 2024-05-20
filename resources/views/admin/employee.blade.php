@@ -6,8 +6,8 @@
             <div class="page-header">
                 <div class="add-item d-flex">
                     <div class="page-title">
-                        <h4>Employees</h4>
-                        <h6>Manage your employees</h6>
+                        <h4>Employee List</h4>
+                        <h6>Manage your employee</h6>
                     </div>
                 </div>
                 <ul class="table-top-head">
@@ -21,73 +21,70 @@
                     </li>
                 </ul>
                 <div class="page-btn">
-                    <a href="add-employee.html" class="btn btn-added"><i data-feather="plus-circle" class="me-2"></i>Add
+                    <a href="#" class="btn btn-added"><i data-feather="plus-circle" class="me-2"></i>Add
                         New Employee</a>
                 </div>
             </div>
 
-            <div class="total-employees">
-                <h6><i data-feather="users" class="feather-user"></i>Total Employees <span>21</span>
-                </h6>
-            </div>
-
-            <div class="employee-grid-widget">
-                <div class="row">
-                    @foreach ($listemployee as $item)
-                        <div class="col-xxl-3 col-xl-4 col-lg-6 col-md-6">
-                            <div class="employee-grid-profile">
-                                <div class="profile-head">
-                                    <label class="checkboxs">
-                                        <span class="checkmarks"></span>
-                                    </label>
-                                    <div class="profile-head-action">
-                                        <span class="badge badge-linesuccess text-center w-auto me-1">
-                                            @if ($item->status == 1)
-                                                Active
-                                            @else
-                                                In Active
-                                            @endif
-                                        </span>
-                                        <div class="dropdown profile-action">
-                                            <a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown"
-                                                aria-expanded="false"><i data-feather="more-vertical"
-                                                    class="feather-user"></i></a>
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                    <a href="edit-employee.html" class="dropdown-item"><i
-                                                            data-feather="edit" class="info-img"></i>Edit</a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:void(0);" class="dropdown-item confirm-text mb-0"><i
-                                                            data-feather="trash-2" class="info-img"></i>Delete</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="profile-info">
-                                    <div class="profile-pic active-profile">
-                                        <img src="{{ asset('assets') }}/img/users/user-01.jpg" alt>
-                                    </div>
-                                    <h5>EMP ID : POS001</h5>
-                                    <h4>{{ $item->name }}</h4>
-                                    <span>{{ $item->profession->profession }}</span>
-                                </div>
-                                <ul class="department">
-                                    <li>
-                                        Joined
-                                        <span>23 Jul 2023</span>
-                                    </li>
-                                    <li>
-                                        Department
-                                        <span>{{ $role->role }}</span>
-                                    </li>
-                                </ul>
+            <div class="card table-list-card">
+                <div class="card-body">
+                    <div class="table-top">
+                        <div class="search-set">
+                            <div class="search-input">
+                                <a href="javascript:void(0);" class="btn btn-searchset"><i data-feather="search"
+                                        class="feather-search"></i></a>
                             </div>
                         </div>
-                    @endforeach
+                    </div>
+
+                    <div class="table-responsive product-list">
+                        <table class="table datanew">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Phone</th>
+                                    <th>Profession</th>
+                                    <th>Avatar</th>
+                                    <th>Status</th>
+                                    <th class="no-sort">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($listemployee as $item)
+                                    <tr>
+                                        <td>{{ $item->name }} </td>
+                                        <td>{{ $item->phone }}</td>
+                                        <td>{{ $item->profession->profession }}</td>
+                                        <td>
+                                            <div class="userimgname">
+                                                <a href="javascript:void(0);" class="product-img">
+                                                    <img src="" alt="product">
+                                                </a>
+                                                <a href="javascript:void(0);">Arroon</a>
+                                            </div>
+                                        </td>
+                                        <td>Status</td>
+                                        <td class="action-table-data">
+                                            <div class="edit-delete-action">
+                                                <a class="me-2 edit-icon  p-2" href="product-details.html">
+                                                    <i data-feather="eye" class="feather-eye"></i>
+                                                </a>
+                                                <a class="me-2 p-2" href="edit-product.html">
+                                                    <i data-feather="edit" class="feather-edit"></i>
+                                                </a>
+                                                <a class="confirm-text p-2" href="javascript:void(0);">
+                                                    <i data-feather="trash-2" class="feather-trash-2"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 @endsection
