@@ -16,7 +16,7 @@ class EmployeeController extends Controller
 
         if (Auth::user()->role_id == 1) {
 
-            $employee = Employee::all();
+            $employee = Employee::orderBy('id', 'asc')->get();
             $profession = Profession::all();
 
             return view('admin.employee', ['listemployee' => $employee, 'profession' => $profession]);
@@ -42,17 +42,29 @@ class EmployeeController extends Controller
 
         $newSignature = '';
         $newAvatar = '';
+
         if ($request->file('signature') && $request->file('avatar')) {
 
             $extension = $request->file('signature')->getClientOriginalExtension();
-            $newSignature = $request->employeename . 'signature' . '-' . now()->timestamp . '.' . $extension;
-            $request->file('employeesignature')->storeAs('employeesignature', $newSignature);
-            $request['employeesignature'] = $newSignature;
+            $newSignature = $request->name . 'signature' . '-' . now()->timestamp . '.' . $extension;
+            $request->file('signature')->storeAs('signature', $newSignature);
+            $request['signature'] = $newSignature;
 
-            $extension = $request->file('employeeavatar')->getClientOriginalExtension();
-            $newAvatar = $request->employeename . 'avatar' . '-' . now()->timestamp . '.' . $extension;
-            $request->file('employeeavatar')->storeAs('employeeavatar', $newAvatar);
-            $request['employeeavatar'] = $newAvatar;
+            $extension = $request->file('avatar')->getClientOriginalExtension();
+            $newAvatar = $request->name . 'avatar' . '-' . now()->timestamp . '.' . $extension;
+            $request->file('avatar')->storeAs('avatar', $newAvatar);
+            $request['avatar'] = $newAvatar;
+
+            Employee::create([
+                'name'  =>  $request->name,
+                'phone' =>  $request->phone,
+                'profession_id' =>  $request->profession,
+                'address'   =>  $request->address,
+                'status'    =>  $request->status,
+                'avatar'    =>  $newAvatar,
+                'signature' =>  $newSignature
+            ]);
         }
+        return redirect('employee')->with('success-message', 'Data Success Di Simpan !');
     }
 }

@@ -137,12 +137,13 @@
                             <label class="form-label">Address</label>
                             <textarea class="form-control" name="address"></textarea>
                         </div>
-                        <div class="mb-0">
-                            <div class="status-toggle modal-status d-flex justify-content-between align-items-center">
-                                <span class="status-label">Status</span>
-                                <input type="checkbox" id="user2" class="check" name="status" checked>
-                                <label for="user2" class="checktoggle"></label>
-                            </div>
+                        <div class="mb-3">
+                            <label class="form-label">Status</label>
+                            <select class="select" name="status">
+                                <option>Choose Status</option>
+                                <option value="1"> Active</option>
+                                <option value="2"> Inactive</option>
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">
