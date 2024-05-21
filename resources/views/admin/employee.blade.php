@@ -22,7 +22,7 @@
                 </ul>
                 <div class="page-btn">
                     <a class="modal-effect btn btn-added" data-bs-effect="effect-sign" data-bs-toggle="modal"
-                        href="#modaldemo8"><i data-feather="plus-circle" class="me-2"></i>Add Employee</a>
+                        href="#modaladd"><i data-feather="plus-circle" class="me-2"></i>Add Employee</a>
                 </div>
             </div>
 
@@ -72,10 +72,12 @@
                                             @endif
                                         <td class="action-table-data">
                                             <div class="edit-delete-action">
-                                                <a class="me-2 edit-icon  p-2" href="product-details.html">
+                                                <a class="me-2 edit-icon  p-2" data-bs-effect="effect-sign"
+                                                    data-bs-toggle="modal" href="#modaldetail{{ $item->id }}">
                                                     <i data-feather="eye" class="feather-eye"></i>
                                                 </a>
-                                                <a class="me-2 p-2" href="edit-product.html">
+                                                <a class="me-2 p-2" data-bs-effect="effect-sign" data-bs-toggle="modal"
+                                                    href="#modaledit{{ $item->id }}">
                                                     <i data-feather="edit" class="feather-edit"></i>
                                                 </a>
                                                 <a class="confirm-text p-2" href="javascript:void(0);">
@@ -84,6 +86,181 @@
                                             </div>
                                         </td>
                                     </tr>
+
+                                    <div class="modal fade" id="modaledit{{ $item->id }}">
+                                        <div class="modal-dialog modal-dialog-centered text-center" role="document">
+                                            <div class="modal-content modal-content-demo">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Create Employee</h4><button aria-label="Close"
+                                                        class="btn-close" data-bs-dismiss="modal"></button>
+                                                </div>
+                                                <form action="employee/{{ $item->id }}" method="POST"
+                                                    enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="modal-body text-start">
+                                                        <div class="row">
+                                                            <div class="col-md-6 mb-3">
+                                                                <label class="form-label">Name</label>
+                                                                <input type="text" name="name"
+                                                                    value="{{ $item->name }}" class="form-control">
+                                                            </div>
+                                                            <div class="col-md-6 mb-3">
+                                                                <label class="form-label">Phone</label>
+                                                                <input type="text" name="phone"
+                                                                    value="{{ $item->phone }}" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Profession</label>
+                                                            <select class="select" name="profession">
+                                                                <option>Choose Profession</option>
+                                                                @foreach ($profession as $itemprofession)
+                                                                    <option value="{{ $itemprofession->id }}"
+                                                                        @if ($item->profession_id == $itemprofession->id) selected="selected" @endif>
+                                                                        {{ $itemprofession->profession }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6 mb-3">
+                                                                <div class="new-employee-field">
+                                                                    <label class="form-label">Signature</label>
+                                                                    <div class="profile-pic-upload">
+                                                                        <div class="profile-pic people-profile-pic">
+                                                                            <img src="{{ asset('storage/Signature/' . $item->signature) }}"
+                                                                                alt="Img">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <input type="file" class="form-control"
+                                                                        name="signature">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 mb-3">
+                                                                <div class="new-employee-field">
+                                                                    <label class="form-label">Avatar</label>
+                                                                    <div class="profile-pic-upload">
+                                                                        <div class="profile-pic people-profile-pic">
+                                                                            <img src="{{ asset('storage/avatar/' . $item->avatar) }}"
+                                                                                alt="Img">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <input type="file" class="form-control"
+                                                                        name="avatar">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Address</label>
+                                                            <textarea class="form-control" name="address">{{ $item->address }}</textarea>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Status</label>
+                                                            <select class="select" name="status">
+                                                                <option>Choose Status</option>
+                                                                <option value="1"
+                                                                    @if ($item->status == 1) selected="selected" @endif>
+                                                                    Active</option>
+                                                                <option value="2"
+                                                                    @if ($item->status == 2) selected="selected" @endif>
+                                                                    Inactive</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-cancel"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Save
+                                                            changes</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal fade" id="modaldetail{{ $item->id }}">
+                                        <div class="modal-dialog modal-dialog-centered text-center" role="document">
+                                            <div class="modal-content modal-content-demo">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Create Employee</h4><button aria-label="Close"
+                                                        class="btn-close" data-bs-dismiss="modal"></button>
+                                                </div>
+                                                <form action="employee/{{ $item->id }}" method="POST"
+                                                    enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="modal-body text-start">
+                                                        <div class="row">
+                                                            <div class="col-md-6 mb-3">
+                                                                <label class="form-label">Name</label>
+                                                                <input type="text" name="name"
+                                                                    value="{{ $item->name }}" class="form-control"
+                                                                    readonly>
+                                                            </div>
+                                                            <div class="col-md-6 mb-3">
+                                                                <label class="form-label">Phone</label>
+                                                                <input type="text" name="phone"
+                                                                    value="{{ $item->phone }}" class="form-control"
+                                                                    readonly>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Profession</label>
+                                                            <input type="text" name="phone"
+                                                                value="{{ $item->profession->profession }}"
+                                                                class="form-control" readonly>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6 mb-3">
+                                                                <div class="new-employee-field">
+                                                                    <label class="form-label">Signature</label>
+                                                                    <div class="profile-pic-upload">
+                                                                        <div class="profile-pic people-profile-pic">
+                                                                            <img src="{{ asset('storage/Signature/' . $item->signature) }}"
+                                                                                alt="Img">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 mb-3">
+                                                                <div class="new-employee-field">
+                                                                    <label class="form-label">Avatar</label>
+                                                                    <div class="profile-pic-upload">
+                                                                        <div class="profile-pic people-profile-pic">
+                                                                            <img src="{{ asset('storage/avatar/' . $item->avatar) }}"
+                                                                                alt="Img">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Address</label>
+                                                            <textarea class="form-control" name="address">{{ $item->address }}</textarea>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Status</label>
+                                                            <select class="select" name="status">
+                                                                <option>Choose Status</option>
+                                                                <option value="1"
+                                                                    @if ($item->status == 1) selected="selected" @endif>
+                                                                    Active</option>
+                                                                <option value="2"
+                                                                    @if ($item->status == 2) selected="selected" @endif>
+                                                                    Inactive</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-cancel"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @endforeach
                             </tbody>
                         </table>
@@ -94,7 +271,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="modaldemo8">
+    <div class="modal fade" id="modaladd">
         <div class="modal-dialog modal-dialog-centered text-center" role="document">
             <div class="modal-content modal-content-demo">
                 <div class="modal-header">
@@ -137,12 +314,13 @@
                             <label class="form-label">Address</label>
                             <textarea class="form-control" name="address"></textarea>
                         </div>
-                        <div class="mb-0">
-                            <div class="status-toggle modal-status d-flex justify-content-between align-items-center">
-                                <span class="status-label">Status</span>
-                                <input type="checkbox" id="user2" class="check" name="status" checked>
-                                <label for="user2" class="checktoggle"></label>
-                            </div>
+                        <div class="mb-3">
+                            <label class="form-label">Status</label>
+                            <select class="select" name="status">
+                                <option>Choose Status</option>
+                                <option value="1"> Active</option>
+                                <option value="2"> Inactive</option>
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">
