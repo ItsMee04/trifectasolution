@@ -80,7 +80,9 @@
                                                     href="#modaledit{{ $item->id }}">
                                                     <i data-feather="edit" class="feather-edit"></i>
                                                 </a>
-                                                <a class="confirm-text p-2" href="javascript:void(0);">
+                                                <a class="me-2 p-2"
+                                                    onclick="confirm_modal('delete-employee/{{ $item->id }}');"
+                                                    data-bs-toggle="modal" data-bs-target="#modal_delete">
                                                     <i data-feather="trash-2" class="feather-trash-2"></i>
                                                 </a>
                                             </div>
@@ -238,19 +240,18 @@
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Address</label>
-                                                            <textarea class="form-control" name="address">{{ $item->address }}</textarea>
+                                                            <textarea class="form-control" name="address" readonly>{{ $item->address }}</textarea>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Status</label>
-                                                            <select class="select" name="status">
-                                                                <option>Choose Status</option>
-                                                                <option value="1"
-                                                                    @if ($item->status == 1) selected="selected" @endif>
-                                                                    Active</option>
-                                                                <option value="2"
-                                                                    @if ($item->status == 2) selected="selected" @endif>
-                                                                    Inactive</option>
-                                                            </select>
+                                                            @if ($item->status == 1)
+                                                                <input type="text" name="phone" value="Active"
+                                                                    class="form-control" readonly>
+                                                            @else
+                                                                <input type="text" name="phone" value="Inactive"
+                                                                    class="form-control" readonly>
+                                                            @endif
+
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
@@ -331,4 +332,30 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal Popup untuk delete-->
+    <div class="modal custom-modal fade" id="modal_delete">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-body p-4">
+                    <div class="text-center">
+                        <i class="dripicons-warning h1 text-warning"></i>
+                        <h4 class="mt-2">Perhatian !!</h4>
+                        <p class="mt-3">Yakin menghapus data ini ?</p>
+                        <a id="delete_link" class="btn btn-warning my-2" data-dismiss="modal">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Javascript untuk popup modal Delete-->
+    <script type="text/javascript">
+        function confirm_modal(delete_url) {
+            $('#modal_delete').modal('show', {
+                backdrop: 'static'
+            });
+            document.getElementById('delete_link').setAttribute('href', delete_url);
+        }
+    </script>
 @endsection

@@ -152,6 +152,7 @@
 
     <script src="{{ asset('assets') }}/js/theme-script.js" type="text/javascript"></script>
     <script src="{{ asset('assets') }}/js/script.js" type="text/javascript"></script>
+
     @if ($errors->any())
         <script>
             const dangertoastExamplee = document.getElementById('dangerToastError')

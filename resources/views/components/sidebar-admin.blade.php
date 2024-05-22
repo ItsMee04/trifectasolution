@@ -51,6 +51,16 @@
                     </ul>
                 </li>
                 <li class="submenu-open">
+                    <h6 class="submenu-hdr">User Management</h6>
+                    <ul>
+                        <li><a href="user"><i data-feather="user-check"></i><span>Users</span></a></li>
+                        <li><a href="roles-permissions.html"><i data-feather="shield"></i><span>Roles &
+                                    Permissions</span></a></li>
+                        <li><a href="delete-account.html"><i data-feather="lock"></i><span>Delete Account
+                                    Request</span></a></li>
+                    </ul>
+                </li>
+                <li class="submenu-open">
                     <h6 class="submenu-hdr">HRM</h6>
                     <ul>
                         <li class="active"><a href="product-list.html"><i
@@ -209,16 +219,7 @@
                                     Loss</span></a></li>
                     </ul>
                 </li>
-                <li class="submenu-open">
-                    <h6 class="submenu-hdr">User Management</h6>
-                    <ul>
-                        <li><a href="users.html"><i data-feather="user-check"></i><span>Users</span></a></li>
-                        <li><a href="roles-permissions.html"><i data-feather="shield"></i><span>Roles &
-                                    Permissions</span></a></li>
-                        <li><a href="delete-account.html"><i data-feather="lock"></i><span>Delete Account
-                                    Request</span></a></li>
-                    </ul>
-                </li>
+
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Pages</h6>
                     <ul>

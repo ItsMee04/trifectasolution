@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Models\Employee;
 use App\Models\Profession;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -212,9 +213,19 @@ class EmployeeController extends Controller
         return redirect('employee')->with('success-message', 'Data Success Di Update !');
     }
 
-    public function show(Request $request, $id)
+    public function delete($id)
     {
         $employee = Employee::where('id', $id)->first();
-        return view('admin.edmployee-detail', ['employee' => $employee]);
+        $user    = User::where('employee_id', $id)->first();
+
+        $deleteemployee = Employee::where('id', $id)->delete();
+
+        if ($user != null) {
+            if ($deleteemployee) {
+                User::where('iduser', $id)->delete();
+            }
+        }
+
+        return redirect('employee')->with('success-message', 'Data Success Dihapus !');
     }
 }

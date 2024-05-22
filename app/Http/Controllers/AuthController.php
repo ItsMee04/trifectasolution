@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
+use App\Models\Profession;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -30,6 +34,18 @@ class AuthController extends Controller
                 return redirect('login')->with('errors-message', 'User Account Belum Aktif !');
             } else {
                 if (Auth::user()->role_id == 1) {
+                    $employee = Employee::where('id', Auth::user()->employee_id)->first()->name;
+                    $avatar   = Employee::where('id', Auth::user()->employee_id)->first()->avatar;
+
+                    $idprofession   = Employee::where('id', Auth::user()->employee_id)->first()->profession_id;
+                    $profession     = Profession::where('id', $idprofession)->first()->profession;
+
+                    $role   = Role::where('id', Auth::user()->role_id)->first()->role;
+
+                    Session::put('name', $employee);
+                    Session::put('avatar', $avatar);
+                    Session::put('profession', $profession);
+                    Session::put('role', $role);
                     return redirect('dashboard')->with('success-message', 'Login Berhasil');
                 }
             }
