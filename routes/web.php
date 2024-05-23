@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\UserController;
 use App\Models\Employee;
 use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +36,8 @@ Route::middleware('auth')->group(function () {
         Route::post('employee', [EmployeeController::class, 'store']);
         Route::post('employee/{id}', [EmployeeController::class, 'update']);
         Route::get('delete-employee/{id}', [EmployeeController::class, 'delete']);
+
+        Route::get('user', [UserController::class, 'index']);
 
         Route::get('logout', [AuthController::class, 'logout']);
     });

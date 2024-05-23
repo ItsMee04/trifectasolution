@@ -12,8 +12,8 @@
                 </div>
                 <ul class="table-top-head">
                     <li>
-                        <a data-bs-toggle="tooltip" data-bs-placement="top" title="Refresh"><i data-feather="rotate-ccw"
-                                class="feather-rotate-ccw"></i></a>
+                        <a data-bs-toggle="tooltip" onClick="window.location.href=window.location.href" data-bs-placement="top"
+                            title="Refresh"><i data-feather="rotate-ccw" class="feather-rotate-ccw"></i></a>
                     </li>
                     <li>
                         <a data-bs-toggle="tooltip" data-bs-placement="top" title="Collapse" id="collapse-header"><i
@@ -79,6 +79,10 @@
                                                 <a class="me-2 p-2" data-bs-effect="effect-sign" data-bs-toggle="modal"
                                                     href="#modaledit{{ $item->id }}">
                                                     <i data-feather="edit" class="feather-edit"></i>
+                                                </a>
+                                                <a class="me-2 p-2" data-bs-effect="effect-sign" data-bs-toggle="modal"
+                                                    href="#modalUser{{ $item->id }}">
+                                                    <i data-feather="user-check" class="feather-user"></i>
                                                 </a>
                                                 <a class="me-2 p-2"
                                                     onclick="confirm_modal('delete-employee/{{ $item->id }}');"
