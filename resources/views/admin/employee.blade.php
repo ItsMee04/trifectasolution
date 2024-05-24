@@ -81,7 +81,7 @@
                                                     <i data-feather="edit" class="feather-edit"></i>
                                                 </a>
                                                 <a class="me-2 p-2" data-bs-effect="effect-sign" data-bs-toggle="modal"
-                                                    href="#modalUser{{ $item->id }}">
+                                                    href="#modaluser{{ $item->id }}">
                                                     <i data-feather="user-check" class="feather-user"></i>
                                                 </a>
                                                 <a class="me-2 p-2"
@@ -187,11 +187,59 @@
                                         </div>
                                     </div>
 
+                                    <div class="modal fade" id="modaluser{{ $item->id }}">
+                                        <div class="modal-dialog modal-dialog-centered text-center" role="document">
+                                            <div class="modal-content modal-content-demo">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Create Account</h4><button aria-label="Close"
+                                                        class="btn-close" data-bs-dismiss="modal"></button>
+                                                </div>
+                                                <form action="users/{{ $item->id }}" method="POST"
+                                                    enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="modal-body text-start">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Name</label>
+                                                            <input type="text" name="name"
+                                                                value="{{ $item->name }}" class="form-control"
+                                                                readonly>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Username</label>
+                                                            <input type="text" name="username" class="form-control">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Password</label>
+                                                            <input type="password" name="password" class="form-control">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Role</label>
+                                                            <select class="select" name="role">
+                                                                <option>Choose Role</option>
+                                                                @foreach ($role as $itemrole)
+                                                                    <option value="{{ $itemrole->id }}"
+                                                                        @if ($item->role == $itemrole->id) selected="selected" @endif>
+                                                                        {{ $itemrole->role }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-cancel"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Save
+                                                            changes</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="modal fade" id="modaldetail{{ $item->id }}">
                                         <div class="modal-dialog modal-dialog-centered text-center" role="document">
                                             <div class="modal-content modal-content-demo">
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title">Create Employee</h4><button aria-label="Close"
+                                                    <h4 class="modal-title">Detail Employee</h4><button aria-label="Close"
                                                         class="btn-close" data-bs-dismiss="modal"></button>
                                                 </div>
                                                 <form action="employee/{{ $item->id }}" method="POST"

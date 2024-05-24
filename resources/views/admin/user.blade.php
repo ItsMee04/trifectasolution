@@ -75,7 +75,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            @if ($item->username == null)
+                                            @if ($item->status != 1)
                                                 <span class="badge bg-danger">Inactive</span>
                                             @else
                                                 <span class="badge bg-success">Active</span>

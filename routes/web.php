@@ -37,7 +37,8 @@ Route::middleware('auth')->group(function () {
         Route::post('employee/{id}', [EmployeeController::class, 'update']);
         Route::get('delete-employee/{id}', [EmployeeController::class, 'delete']);
 
-        Route::get('user', [UserController::class, 'index']);
+        Route::get('users', [UserController::class, 'index']);
+        Route::post('users/{id}', [UserController::class, 'store']);
 
         Route::get('logout', [AuthController::class, 'logout']);
     });

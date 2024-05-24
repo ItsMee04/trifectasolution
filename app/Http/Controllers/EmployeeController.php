@@ -19,10 +19,11 @@ class EmployeeController extends Controller
 
         if (Auth::user()->role_id == 1) {
 
-            $employee = Employee::orderBy('id', 'asc')->get();
+            $employee   = Employee::orderBy('id', 'asc')->get();
+            $role       = Role::all();
             $profession = Profession::all();
 
-            return view('admin.employee', ['listemployee' => $employee, 'profession' => $profession]);
+            return view('admin.employee', ['listemployee' => $employee, 'profession' => $profession, 'role' => $role]);
         } elseif (Auth::user()->role_id == 2) {
 
             return view('kepala.employee');
