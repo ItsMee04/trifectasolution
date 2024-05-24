@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use App\Models\Employee;
 use Illuminate\Http\Request;
@@ -15,13 +16,14 @@ class UserController extends Controller
     public function index()
     {
         if (Auth::user()->role_id == 1) {
+            $role = Role::all();
             $user = DB::table('users')
-                ->select('users.*', 'employee.name', 'employee.avatar', 'role.id', 'role.role')
+                ->select('users.*', 'employee.name', 'employee.avatar', 'role.id as roleid', 'role.role')
                 ->join('employee', 'users.employee_id', '=', 'employee.id')
                 ->join('role', 'users.role_id', '=', 'role.id')
                 ->get();
 
-            return view('admin.user', ['user' => $user]);
+            return view('admin.user', ['user' => $user, 'role' => $role]);
         } else {
             $user = DB::table('users')
                 ->join('employee', 'users.employee_id', '=', 'employee.id')

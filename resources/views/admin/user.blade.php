@@ -83,11 +83,12 @@
                                         </td>
                                         <td class="action-table-data">
                                             <div class="edit-delete-action">
-                                                <a class="me-2 p-2 mb-0" href="javascript:void(0);">
+                                                <a class="me-2 p-2 mb-0" data-bs-effect="effect-sign" data-bs-toggle="modal"
+                                                    href="#modaldetail{{ $item->id }}">
                                                     <i data-feather="eye" class="action-eye"></i>
                                                 </a>
                                                 <a class="me-2 p-2 mb-0" data-bs-toggle="modal"
-                                                    data-bs-target="#edit-units">
+                                                    data-bs-target="#modaledit{{ $item->id }}">
                                                     <i data-feather="edit" class="feather-edit"></i>
                                                 </a>
                                                 <a class="me-2 confirm-text p-2 mb-0" href="javascript:void(0);">
@@ -96,6 +97,108 @@
                                             </div>
                                         </td>
                                     </tr>
+
+                                    <div class="modal fade" id="modaledit{{ $item->id }}">
+                                        <div class="modal-dialog modal-dialog-centered text-center" role="document">
+                                            <div class="modal-content modal-content-demo">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Edit Account</h4><button aria-label="Close"
+                                                        class="btn-close" data-bs-dismiss="modal"></button>
+                                                </div>
+                                                <form action="users/{{ $item->id }}" method="POST"
+                                                    enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="modal-body text-start">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Name</label>
+                                                            <input type="text" name="name" value="{{ $item->name }}"
+                                                                class="form-control" readonly>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Username</label>
+                                                            <input type="text" value="{{ $item->username }}"
+                                                                name="username" class="form-control">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Role</label>
+                                                            <select class="select" name="role">
+                                                                <option>Choose Role</option>
+                                                                @foreach ($role as $itemrole)
+                                                                    <option value="{{ $itemrole->id }}"
+                                                                        @if ($item->role_id == $itemrole->id) selected="selected" @endif>
+                                                                        {{ $itemrole->role }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Username</label>
+                                                            @if ($item->status == 1)
+                                                                <input type="text" value="Active" class="form-control"
+                                                                    readonly>
+                                                            @else
+                                                                <input type="text" value="Inactive" class="form-control"
+                                                                    readonly>
+                                                            @endif
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-cancel"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Save
+                                                            changes</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal fade" id="modaldetail{{ $item->id }}">
+                                        <div class="modal-dialog modal-dialog-centered text-center" role="document">
+                                            <div class="modal-content modal-content-demo">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Detail Account</h4><button aria-label="Close"
+                                                        class="btn-close" data-bs-dismiss="modal"></button>
+                                                </div>
+                                                <form action="users/{{ $item->id }}" method="POST"
+                                                    enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="modal-body text-start">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Name</label>
+                                                            <input type="text" value="{{ $item->name }}"
+                                                                class="form-control" readonly>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Username</label>
+                                                            <input type="text" value="{{ $item->username }}"
+                                                                class="form-control" readonly>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Role</label>
+                                                            <input type="text" value="{{ $item->role }}"
+                                                                class="form-control" readonly>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Status</label>
+                                                            @if ($item->status != 1)
+                                                                <input type="text" value="Inactive"
+                                                                    class="form-control" readonly>
+                                                            @else
+                                                                <input type="text" value="Active" class="form-control"
+                                                                    readonly>
+                                                            @endif
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-cancel"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @endforeach
                             </tbody>
                         </table>
