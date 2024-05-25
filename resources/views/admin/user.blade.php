@@ -105,7 +105,7 @@
                                                     <h4 class="modal-title">Edit Account</h4><button aria-label="Close"
                                                         class="btn-close" data-bs-dismiss="modal"></button>
                                                 </div>
-                                                <form action="users/{{ $item->id }}" method="POST"
+                                                <form action="update-users/{{ $item->id }}" method="POST"
                                                     enctype="multipart/form-data">
                                                     @csrf
                                                     <div class="modal-body text-start">
@@ -120,6 +120,10 @@
                                                                 name="username" class="form-control">
                                                         </div>
                                                         <div class="mb-3">
+                                                            <label class="form-label">Password</label>
+                                                            <input type="text" name="password" class="form-control">
+                                                        </div>
+                                                        <div class="mb-3">
                                                             <label class="form-label">Role</label>
                                                             <select class="select" name="role">
                                                                 <option>Choose Role</option>
@@ -131,15 +135,16 @@
                                                             </select>
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label class="form-label">Username</label>
-                                                            @if ($item->status == 1)
-                                                                <input type="text" value="Active" class="form-control"
-                                                                    readonly>
-                                                            @else
-                                                                <input type="text" value="Inactive" class="form-control"
-                                                                    readonly>
-                                                            @endif
-
+                                                            <label class="form-label">Status</label>
+                                                            <select class="select" name="status">
+                                                                <option>Choose Status</option>
+                                                                <option value="1"
+                                                                    @if ($item->status == 1) selected="selected" @endif>
+                                                                    Active</option>
+                                                                <option value="2"
+                                                                    @if ($item->status == 2) selected="selected" @endif>
+                                                                    Inactive</option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">

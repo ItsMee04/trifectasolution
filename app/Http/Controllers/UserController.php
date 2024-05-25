@@ -73,13 +73,12 @@ class UserController extends Controller
 
         $credentials = $request->validate([
             'username'  => 'required',
-            'password'  => 'required',
             'role'      => 'required',
         ], $messages);
 
         if ($request->password) {
 
-            User::where('id', $id)
+            $update = User::where('id', $id)
                 ->update([
                     'username'  => $request->username,
                     'password'  => Hash::make($request->password),
@@ -87,10 +86,16 @@ class UserController extends Controller
                     'status'    => $request->status
                 ]);
 
-            Auth::logout();
-            $request->session()->invalidate();
-            $request->session()->regenerateToken();
-            return redirect('login');
+            if ($update) {
+                if (Auth::user()->id == $id) {
+                    Auth::logout();
+                    $request->session()->invalidate();
+                    $request->session()->regenerateToken();
+                    return redirect('login');
+                } else {
+                    return redirect('users')->with('success-message', 'Data Success Diupdate !');
+                }
+            }
         } else {
             User::where('id', $id)
                 ->update([

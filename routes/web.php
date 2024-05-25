@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('users', [UserController::class, 'index']);
         Route::post('users/{id}', [UserController::class, 'store']);
+        Route::post('update-users/{id}', [UserController::class, 'update']);
 
         Route::get('logout', [AuthController::class, 'logout']);
     });
