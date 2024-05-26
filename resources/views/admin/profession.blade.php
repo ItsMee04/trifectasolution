@@ -1,13 +1,13 @@
 @extends('components.main')
-@section('title', 'User')
+@section('title', 'Profession')
 @section('content')
     <div class="page-wrapper">
         <div class="content">
             <div class="page-header">
                 <div class="add-item d-flex">
                     <div class="page-title">
-                        <h4>User List</h4>
-                        <h6>Manage Your Users</h6>
+                        <h4>Profession</h4>
+                        <h6>Manage your profession</h6>
                     </div>
                 </div>
                 <ul class="table-top-head">
@@ -20,6 +20,10 @@
                                 data-feather="chevron-up" class="feather-chevron-up"></i></a>
                     </li>
                 </ul>
+                <div class="page-btn">
+                    <a class="modal-effect btn btn-added" data-bs-effect="effect-sign" data-bs-toggle="modal"
+                        href="#modaladd"><i data-feather="plus-circle" class="me-2"></i>Add Profession</a>
+                </div>
             </div>
 
             <div class="card table-list-card">
@@ -30,69 +34,46 @@
                                 <a href class="btn btn-searchset"><i data-feather="search" class="feather-search"></i></a>
                             </div>
                         </div>
-                        <div class="search-path">
-                        </div>
-                        <div class="form-sort">
-                        </div>
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table datanew">
+                        <table class="table  datanew">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Username</th>
-                                    <th>Role</th>
+                                    <th class="no-sort">
+                                        No.
+                                    </th>
+                                    <th>Profession Name</th>
                                     <th>Status</th>
                                     <th class="no-sort">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($user as $item)
+                                @foreach ($listprofession as $item)
                                     <tr>
                                         <td>
-                                            <div class="userimgname">
-                                                <a href="javascript:void(0);" class="userslist-img bg-img">
-                                                    <img src="{{ asset('storage/avatar/' . $item->avatar) }}"
-                                                        alt="product">
-                                                </a>
-                                                <div>
-                                                    <a href="javascript:void(0);">{{ $item->name }}</a>
-                                                </div>
-                                            </div>
+                                            {{ $loop->iteration }}
                                         </td>
+                                        <td>{{ $item->profession }}</td>
                                         <td>
-                                            @if ($item->username == null)
-                                                <span class="badge bg-danger">Inactive</span>
-                                            @else
-                                                {{ $item->username }}
-                                            @endif
-                                        <td>
-                                            @if ($item->username == null)
-                                                <span class="badge bg-danger">Inactive</span>
-                                            @else
-                                                {{ $item->role }}
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if ($item->status != 1)
-                                                <span class="badge bg-danger">Inactive</span>
-                                            @else
+                                            @if ($item->status == 1)
                                                 <span class="badge bg-success">Active</span>
+                                            @else
+                                                <span class="badge bg-danger">Inactive</span>
                                             @endif
                                         </td>
                                         <td class="action-table-data">
                                             <div class="edit-delete-action">
-                                                <a class="me-2 p-2 mb-0" data-bs-effect="effect-sign" data-bs-toggle="modal"
-                                                    href="#modaldetail{{ $item->id }}">
-                                                    <i data-feather="eye" class="action-eye"></i>
+                                                <a class="me-2 edit-icon  p-2" data-bs-effect="effect-sign"
+                                                    data-bs-toggle="modal" href="#modaldetail{{ $item->id }}">
+                                                    <i data-feather="eye" class="feather-eye"></i>
                                                 </a>
-                                                <a class="me-2 p-2 mb-0" data-bs-toggle="modal"
-                                                    data-bs-target="#modaledit{{ $item->id }}">
+                                                <a class="me-2 p-2" data-bs-effect="effect-sign" data-bs-toggle="modal"
+                                                    href="#modaledit{{ $item->id }}">
                                                     <i data-feather="edit" class="feather-edit"></i>
                                                 </a>
                                                 <a class="me-2 p-2"
-                                                    onclick="confirm_modal('delete-users/{{ $item->id }}');"
+                                                    onclick="confirm_modal('profession/{{ $item->id }}');"
                                                     data-bs-toggle="modal" data-bs-target="#modal_delete">
                                                     <i data-feather="trash-2" class="feather-trash-2"></i>
                                                 </a>
@@ -104,37 +85,17 @@
                                         <div class="modal-dialog modal-dialog-centered text-center" role="document">
                                             <div class="modal-content modal-content-demo">
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title">Edit Account</h4><button aria-label="Close"
+                                                    <h4 class="modal-title">Edit Profession</h4><button aria-label="Close"
                                                         class="btn-close" data-bs-dismiss="modal"></button>
                                                 </div>
-                                                <form action="update-users/{{ $item->id }}" method="POST"
+                                                <form action="profession/{{ $item->id }}" method="POST"
                                                     enctype="multipart/form-data">
                                                     @csrf
                                                     <div class="modal-body text-start">
                                                         <div class="mb-3">
-                                                            <label class="form-label">Name</label>
-                                                            <input type="text" name="name" value="{{ $item->name }}"
-                                                                class="form-control" readonly>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Username</label>
-                                                            <input type="text" value="{{ $item->username }}"
-                                                                name="username" class="form-control">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Password</label>
-                                                            <input type="text" name="password" class="form-control">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Role</label>
-                                                            <select class="select" name="role">
-                                                                <option>Choose Role</option>
-                                                                @foreach ($role as $itemrole)
-                                                                    <option value="{{ $itemrole->id }}"
-                                                                        @if ($item->role_id == $itemrole->id) selected="selected" @endif>
-                                                                        {{ $itemrole->role }}</option>
-                                                                @endforeach
-                                                            </select>
+                                                            <label class="form-label">Profession</label>
+                                                            <input type="text" name="profession"
+                                                                value="{{ $item->profession }}" class="form-control">
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Status</label>
@@ -164,36 +125,27 @@
                                         <div class="modal-dialog modal-dialog-centered text-center" role="document">
                                             <div class="modal-content modal-content-demo">
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title">Detail Account</h4><button aria-label="Close"
+                                                    <h4 class="modal-title">Detail Profession</h4><button aria-label="Close"
                                                         class="btn-close" data-bs-dismiss="modal"></button>
                                                 </div>
-                                                <form action="users/{{ $item->id }}" method="POST"
+                                                <form action="profession/{{ $item->id }}" method="POST"
                                                     enctype="multipart/form-data">
                                                     @csrf
                                                     <div class="modal-body text-start">
                                                         <div class="mb-3">
-                                                            <label class="form-label">Name</label>
-                                                            <input type="text" value="{{ $item->name }}"
-                                                                class="form-control" readonly>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Username</label>
-                                                            <input type="text" value="{{ $item->username }}"
-                                                                class="form-control" readonly>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label class="form-label">Role</label>
-                                                            <input type="text" value="{{ $item->role }}"
-                                                                class="form-control" readonly>
+                                                            <label class="form-label">Profession</label>
+                                                            <input type="text" name="name"
+                                                                value="{{ $item->profession }}" class="form-control"
+                                                                readonly>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Status</label>
-                                                            @if ($item->status != 1)
-                                                                <input type="text" value="Inactive"
+                                                            @if ($item->status == 1)
+                                                                <input type="text" name="status" value="Active"
                                                                     class="form-control" readonly>
                                                             @else
-                                                                <input type="text" value="Active" class="form-control"
-                                                                    readonly>
+                                                                <input type="text" name="status" value="Inactive"
+                                                                    class="form-control" readonly>
                                                             @endif
 
                                                         </div>
@@ -211,6 +163,39 @@
                         </table>
                     </div>
                 </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="modaladd">
+        <div class="modal-dialog modal-dialog-centered text-center" role="document">
+            <div class="modal-content modal-content-demo">
+                <div class="modal-header">
+                    <h4 class="modal-title">Create Profession</h4><button aria-label="Close" class="btn-close"
+                        data-bs-dismiss="modal"></button>
+                </div>
+                <form action="profession" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body text-start">
+                        <div class="mb-3">
+                            <label class="form-label">Profession</label>
+                            <input type="text" name="profession" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Status</label>
+                            <select class="select" name="status">
+                                <option>Choose Status</option>
+                                <option value="1"> Active</option>
+                                <option value="2"> Inactive</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

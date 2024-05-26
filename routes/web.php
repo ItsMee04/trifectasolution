@@ -3,6 +3,8 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ProfessionController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Models\Employee;
 use App\Models\Role;
@@ -40,6 +42,17 @@ Route::middleware('auth')->group(function () {
         Route::get('users', [UserController::class, 'index']);
         Route::post('users/{id}', [UserController::class, 'store']);
         Route::post('update-users/{id}', [UserController::class, 'update']);
+        Route::get('delete-users/{id}', [UserController::class, 'delete']);
+
+        Route::get('role', [RoleController::class, 'index']);
+        Route::post('role', [RoleController::class, 'store']);
+        Route::post('role/{id}', [RoleController::class, 'update']);
+        Route::get('role/{id}', [RoleController::class, 'delete']);
+
+        Route::get('profession', [ProfessionController::class, 'index']);
+        Route::post('profession', [ProfessionController::class, 'store']);
+        Route::post('profession/{id}', [ProfessionController::class, 'update']);
+        Route::get('profession/{id}', [ProfessionController::class, 'delete']);
 
         Route::get('logout', [AuthController::class, 'logout']);
     });

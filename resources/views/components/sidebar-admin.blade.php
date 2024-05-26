@@ -16,7 +16,8 @@
                         <li class="@if (request()->route()->uri == 'employee') active @endif"><a href="employee"><i
                                     data-feather="user"></i><span>Employees</span></a>
                         </li>
-                        <li><a href="department-grid.html"><i data-feather="users"></i><span>Departments</span></a>
+                        <li class="@if (request()->route()->uri == 'profession') active @endif"><a href="profession"><i
+                                    data-feather="users"></i><span>Profession</span></a>
                         </li>
                         <li><a href="designation.html"><i data-feather="git-merge"></i><span>Designation</span></a>
                         </li>
@@ -54,7 +55,7 @@
                     <h6 class="submenu-hdr">User Management</h6>
                     <ul>
                         <li><a href="users"><i data-feather="user-check"></i><span>Users</span></a></li>
-                        <li><a href="roles-permissions.html"><i data-feather="shield"></i><span>Roles &
+                        <li><a href="role"><i data-feather="shield"></i><span>Roles &
                                     Permissions</span></a></li>
                         <li><a href="delete-account.html"><i data-feather="lock"></i><span>Delete Account
                                     Request</span></a></li>

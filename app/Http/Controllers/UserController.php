@@ -107,4 +107,22 @@ class UserController extends Controller
 
         return redirect('users')->with('success-message', 'Data Success Diupdate !');
     }
+
+    public function delete(Request $request, $id)
+    {
+        $ceklogin = Auth::user()->iduser;
+        if ($ceklogin == $id) {
+            User::where('id', $id)->delete();
+
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            return redirect('login');
+        } else {
+            User::where('id', $id)->delete();
+        }
+
+        return redirect('users')->with('success-message', 'Data Success Dihapus !');
+    }
 }
