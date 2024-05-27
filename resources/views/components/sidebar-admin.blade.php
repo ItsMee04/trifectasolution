@@ -11,68 +11,31 @@
                     </ul>
                 </li>
                 <li class="submenu-open">
-                    <h6 class="submenu-hdr">HRM</h6>
+                    <h6 class="submenu-hdr">User Management</h6>
                     <ul>
                         <li class="@if (request()->route()->uri == 'employee') active @endif"><a href="employee"><i
                                     data-feather="user"></i><span>Employees</span></a>
                         </li>
                         <li class="@if (request()->route()->uri == 'profession') active @endif"><a href="profession"><i
                                     data-feather="users"></i><span>Profession</span></a>
-                        </li>
-                        <li><a href="designation.html"><i data-feather="git-merge"></i><span>Designation</span></a>
-                        </li>
-                        <li><a href="shift.html"><i data-feather="shuffle"></i><span>Shifts</span></a></li>
-                        <li class="submenu">
-                            <a href="javascript:void(0);"><i data-feather="book-open"></i><span>Attendence</span><span
-                                    class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="attendance-employee.html">Employee</a></li>
-                                <li><a href="attendance-admin.html">Admin</a></li>
-                            </ul>
-                        </li>
-                        <li class="submenu">
-                            <a href="javascript:void(0);"><i data-feather="calendar"></i><span>Leaves</span><span
-                                    class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="leaves-admin.html">Admin Leaves</a></li>
-                                <li><a href="leaves-employee.html">Employee Leaves</a></li>
-                                <li><a href="leave-types.html">Leave Types</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="holidays.html"><i data-feather="credit-card"></i><span>Holidays</span></a>
-                        </li>
-                        <li class="submenu">
-                            <a href="payroll-list.html"><i data-feather="dollar-sign"></i><span>Payroll</span><span
-                                    class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="payroll-list.html">Employee Salary</a></li>
-                                <li><a href="payslip.html">Payslip</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class="submenu-open">
-                    <h6 class="submenu-hdr">User Management</h6>
-                    <ul>
-                        <li><a href="users"><i data-feather="user-check"></i><span>Users</span></a></li>
-                        <li><a href="role"><i data-feather="shield"></i><span>Roles &
+                        <li class="@if (request()->route()->uri == 'users') active @endif"><a href="users"><i
+                                    data-feather="user-check"></i><span>Users</span></a></li>
+                        <li class="@if (request()->route()->uri == 'role') active @endif"><a href="role"><i
+                                    data-feather="shield"></i><span>Roles &
                                     Permissions</span></a></li>
-                        <li><a href="delete-account.html"><i data-feather="lock"></i><span>Delete Account
-                                    Request</span></a></li>
                     </ul>
                 </li>
                 <li class="submenu-open">
-                    <h6 class="submenu-hdr">HRM</h6>
+                    <h6 class="submenu-hdr">Inventory</h6>
                     <ul>
-                        <li class="active"><a href="product-list.html"><i
-                                    data-feather="box"></i><span>Products</span></a></li>
-                        <li><a href="add-product.html"><i data-feather="plus-square"></i><span>Create
-                                    Product</span></a></li>
-                        <li><a href="expired-products.html"><i data-feather="codesandbox"></i><span>Expired
+                        <li><a href="products"><i data-feather="box"></i><span>Products</span></a></li>
+                        <li class="@if (request()->route()->uri == 'type') active @endif"><a href="type"><i
+                                    data-feather="codesandbox"></i><span>Type
                                     Products</span></a></li>
                         <li><a href="low-stocks.html"><i data-feather="trending-down"></i><span>Low
                                     Stocks</span></a></li>
-                        <li><a href="category-list.html"><i data-feather="codepen"></i><span>Category</span></a>
+                        <li class="@if (request()->route()->uri == 'category') active @endif"><a href="category"><i
+                                    data-feather="codepen"></i><span>Category</span></a>
                         </li>
                         <li><a href="sub-categories.html"><i data-feather="speaker"></i><span>Sub
                                     Category</span></a></li>

@@ -1,16 +1,21 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\Type;
+use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
 use App\Models\Employee;
 use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use SebastianBergmann\Comparator\TypeComparator;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +58,16 @@ Route::middleware('auth')->group(function () {
         Route::post('profession', [ProfessionController::class, 'store']);
         Route::post('profession/{id}', [ProfessionController::class, 'update']);
         Route::get('profession/{id}', [ProfessionController::class, 'delete']);
+
+        Route::get('type', [TypeController::class, 'index']);
+        Route::post('type', [TypeController::class, 'store']);
+        Route::post('type/{id}', [TypeController::class, 'update']);
+        Route::get('type/{id}', [TypeController::class, 'delete']);
+
+        Route::get('category', [CategoryController::class, 'index']);
+        Route::post('category', [CategoryController::class, 'store']);
+
+        Route::get('products', [ProductController::class, 'index']);
 
         Route::get('logout', [AuthController::class, 'logout']);
     });
