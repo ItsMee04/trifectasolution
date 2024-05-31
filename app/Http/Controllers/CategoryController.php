@@ -25,6 +25,10 @@ class CategoryController extends Controller
             'status'        => 'required',
         ], $messages);
 
+        if ($request->status == 'Choose Status') {
+            return redirect('category')->with('errors-message', 'Status wajib di isi !!!');
+        }
+
         Category::create([
             'category'      => $request->category,
             'description'   => $request->description,

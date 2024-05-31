@@ -25,6 +25,10 @@ class ProfessionController extends Controller
             'status'        => 'required',
         ], $messages);
 
+        if ($request->status == 'Choose Status') {
+            return redirect('profession')->with('errors-message', 'Status wajib di isi !!!');
+        }
+
         Profession::create([
             'profession'    => $request->profession,
             'status'        => $request->status
@@ -43,6 +47,10 @@ class ProfessionController extends Controller
             'profession'          => 'required',
             'status'        => 'required',
         ], $messages);
+
+        if ($request->status == 'Choose Status') {
+            return redirect('profession')->with('errors-message', 'Status wajib di isi !!!');
+        }
 
         Profession::where('id', $id)
             ->update([

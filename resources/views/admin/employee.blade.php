@@ -97,7 +97,7 @@
                                         <div class="modal-dialog modal-dialog-centered text-center" role="document">
                                             <div class="modal-content modal-content-demo">
                                                 <div class="modal-header">
-                                                    <h4 class="modal-title">Create Employee</h4><button aria-label="Close"
+                                                    <h4 class="modal-title">Edit Employee</h4><button aria-label="Close"
                                                         class="btn-close" data-bs-dismiss="modal"></button>
                                                 </div>
                                                 <form action="employee/{{ $item->id }}" method="POST"

@@ -25,6 +25,10 @@ class RoleController extends Controller
             'status'        => 'required',
         ], $messages);
 
+        if ($request->status == 'Choose Status') {
+            return redirect('role')->with('errors-message', 'Status wajib di isi !!!');
+        }
+
         Role::create([
             'role'    => $request->role,
             'status'        => $request->status
@@ -43,6 +47,10 @@ class RoleController extends Controller
             'role'          => 'required',
             'status'        => 'required',
         ], $messages);
+
+        if ($request->status == 'Choose Status') {
+            return redirect('type')->with('errors-message', 'Status wajib di isi !!!');
+        }
 
         Role::where('id', $id)
             ->update([

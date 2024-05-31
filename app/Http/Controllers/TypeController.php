@@ -24,6 +24,10 @@ class TypeController extends Controller
             'status'        => 'required',
         ], $messages);
 
+        if ($request->status == 'Choose Status') {
+            return redirect('type')->with('errors-message', 'Status wajib di isi !!!');
+        }
+
         Type::create([
             'type'  => $request->type,
             'status' => $request->status
@@ -42,6 +46,10 @@ class TypeController extends Controller
             'type'          => 'required',
             'status'        => 'required',
         ], $messages);
+
+        if ($request->status == 'Choose Status') {
+            return redirect('type')->with('errors-message', 'Status wajib di isi !!!');
+        }
 
         Type::where('id', $id)
             ->update([
