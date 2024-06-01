@@ -68,6 +68,7 @@ Route::middleware('auth')->group(function () {
         Route::post('category', [CategoryController::class, 'store']);
 
         Route::get('products', [ProductController::class, 'index']);
+        Route::post('products', [ProductController::class, 'store']);
 
         Route::get('logout', [AuthController::class, 'logout']);
     });
