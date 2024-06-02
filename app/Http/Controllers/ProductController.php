@@ -35,9 +35,11 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $messages = [
-            'required' => ':attribute wajib di isi !!!',
-            'integer'  => ':attribute format wajib menggunakan angka',
-            'mimes'    => ':attribute format wajib menggunakan PNG/JPG'
+            'required'  => ':attribute wajib di isi !!!',
+            'integer'   => ':attribute format wajib menggunakan angka',
+            'regex'     => ':attribute format wajib menggnakan decimal',
+            'numeric'   => ':attribute format wajib menggunakan angka',
+            'mimes'     => ':attribute format wajib menggunakan PNG/JPG'
         ];
 
         $credentials = $request->validate([
@@ -45,36 +47,38 @@ class ProductController extends Controller
             'name'          => 'required',
             'sellingprice'  => 'required|integer',
             'type'          => 'required',
-            'weight'        => 'required|integer',
+            'weight'        => 'required', 'numeric', 'min:1', 'max:99.99', 'regex:/^\d+(\.\d{1,2})?$/',
+            'carat'         => 'required|integer',
             'category'      => 'required',
             'status'        => 'required',
             'image'         => 'mimes:png,jpg,jpeg',
         ], $messages);
 
-        if ($request->status == 'Choose Status') {
-            return redirect('category')->with('errors-message', 'Status wajib di isi !!!');
+        if ($request->type == 'Choose Status' || $request->category == 'Choose Status' || $request->status == 'Choose Status') {
+            return redirect('products')->with('errors-message', 'Status wajib di isi !!!');
         }
 
-        $Image = "";
+        $newphoto = "";
         if ($request->file('image')) {
             $extension = $request->file('image')->getClientOriginalExtension();
             $newphoto = $request->codeproduct . '-' . now()->timestamp . '.' . $extension;
-            $request->file('image')->storeAs('ImageProduct', $Image);
-            $request['image'] = $Image;
+            $request->file('image')->storeAs('imageProduct', $newphoto);
+            $request['image'] = $newphoto;
         }
 
         Product::create([
-            'codeproduct'           => $request->codeproduct,
-            'nameproduct'           => $request->nameproduct,
-            'descriptionproduct'    => $request->descriptionproduct,
-            'sellingprice'          => $request->sellingprice,
-            'typeproduct'           => $request->typeproduct,
-            'weightproduct'         => $request->weightproduct,
-            'caratproduct'          => $request->caratproduct,
-            'status'                => $request->status,
-            'photoproduct'          => $newphoto
+            'codeproduct'    => $request->codeproduct,
+            'name'           => $request->name,
+            'sellingprice'   => $request->sellingprice,
+            'type_id'        => $request->type,
+            'category_id'    => $request->category,
+            'weight'         => $request->weight,
+            'carat'          => $request->carat,
+            'description'    => $request->description,
+            'status'         => $request->status,
+            'image'          => $newphoto
         ]);
 
-        return redirect('product')->with('success', 'Data Success Disimpan !');
+        return redirect('products')->with('success-message', 'Data Success Disimpan !');
     }
 }

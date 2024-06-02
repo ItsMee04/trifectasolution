@@ -62,7 +62,7 @@
                                         <td>
                                             <div class="productimgname">
                                                 <a href="javascript:void(0);" class="product-img stock-img">
-                                                    <img src="{{ asset('storage/product/' . $item->image) }}"
+                                                    <img src="{{ asset('storage/imageProduct/' . $item->image) }}"
                                                         alt="product">
                                                 </a>
                                                 <a href="javascript:void(0);">{{ $item->name }} </a>
@@ -71,7 +71,7 @@
                                         <td>{{ $item->codeproduct }} </td>
                                         <td>{{ $item->type->type }}</td>
                                         <td>{{ $item->category->category }}</td>
-                                        <td>{{ $item->pricesell }}</td>
+                                        <td>{{ 'Rp.' . ' ' . number_format($item->sellingprice, 2) }}</td>
                                         <td>
                                             @if ($item->status == 1)
                                                 <span class="badge bg-success">Active</span>
@@ -139,8 +139,23 @@
                                 </select>
                             </div>
                             <div class="col-md-6 mb-3">
+                                <label class="form-label">Category</label>
+                                <select class="select" name="category">
+                                    <option>Choose Category</option>
+                                    @foreach ($category as $itemcategory)
+                                        <option value="{{ $itemcategory->id }}">{{ $itemcategory->category }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
                                 <label class="form-label">Weight</label>
                                 <input type="text" name="weight" class="form-control">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Carat</label>
+                                <input type="text" name="carat" class="form-control">
                             </div>
                         </div>
                         <div class="mb-3">
@@ -153,24 +168,13 @@
                                 <input class="form-control" name="image" type="file">
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Category</label>
-                                <select class="select" name="category">
-                                    <option>Choose Category</option>
-                                    @foreach ($category as $itemcategory)
-                                        <option value="{{ $itemcategory->id }}">{{ $itemcategory->category }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Status</label>
-                                <select class="select" name="status">
-                                    <option>Choose Status</option>
-                                    <option value="1"> Active</option>
-                                    <option value="2"> Inactive</option>
-                                </select>
-                            </div>
+                        <div class="mb-3">
+                            <label class="form-label">Status</label>
+                            <select class="select" name="status">
+                                <option>Choose Status</option>
+                                <option value="1"> Active</option>
+                                <option value="2"> Inactive</option>
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">
