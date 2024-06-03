@@ -93,15 +93,132 @@
                                                 <a class="me-2 edit-icon  p-2" href="products/{{ $item->id }}">
                                                     <i data-feather="eye" class="feather-eye"></i>
                                                 </a>
-                                                <a class="me-2 p-2" href="edit-product.html">
+                                                <a class="me-2 p-2" data-bs-effect="effect-sign" data-bs-toggle="modal"
+                                                    href="#modaledit{{ $item->id }}">
                                                     <i data-feather="edit" class="feather-edit"></i>
                                                 </a>
-                                                <a class="confirm-text p-2" href="javascript:void(0);">
+                                                <a class="me-2 p-2"
+                                                    onclick="confirm_modal('delete-products/{{ $item->id }}');"
+                                                    data-bs-toggle="modal" data-bs-target="#modal_delete">
                                                     <i data-feather="trash-2" class="feather-trash-2"></i>
                                                 </a>
                                             </div>
                                         </td>
                                     </tr>
+
+
+                                    <div class="modal fade" id="modaledit{{ $item->id }}">
+                                        <div class="modal-dialog modal-dialog-centered text-center" role="document">
+                                            <div class="modal-content modal-content-demo">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Create Product</h4><button aria-label="Close"
+                                                        class="btn-close" data-bs-dismiss="modal"></button>
+                                                </div>
+                                                <form action="products/{{ $item->id }}" method="POST"
+                                                    enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="modal-body text-start">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Code Product</label>
+                                                            <input type="text" name="codeproduct" class="form-control"
+                                                                value="{{ $item->codeproduct }}" readonly>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6 mb-3">
+                                                                <label class="form-label">Name</label>
+                                                                <input type="text" name="name"
+                                                                    value="{{ $item->name }}" class="form-control">
+                                                            </div>
+                                                            <div class="col-md-6 mb-3">
+                                                                <label class="form-label">Selling Price</label>
+                                                                <input type="text" name="sellingprice"
+                                                                    value="{{ $item->sellingprice }}"
+                                                                    class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6 mb-3">
+                                                                <label class="form-label">Type</label>
+                                                                <select class="select" name="type">
+                                                                    <option>Choose Type</option>
+                                                                    @foreach ($type as $itemtype)
+                                                                        <option value="{{ $itemtype->id }}"
+                                                                            @if ($item->type_id == $itemtype->id) selected="selected" @endif>
+                                                                            {{ $itemtype->type }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-6 mb-3">
+                                                                <label class="form-label">Category</label>
+                                                                <select class="select" name="category">
+                                                                    <option>Choose Category</option>
+                                                                    @foreach ($category as $itemcategory)
+                                                                        <option value="{{ $itemcategory->id }}"
+                                                                            @if ($item->category_id == $itemcategory->id) selected="selected" @endif>
+                                                                            {{ $itemcategory->category }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6 mb-3">
+                                                                <label class="form-label">Weight</label>
+                                                                <input type="text" name="weight"
+                                                                    value="{{ $item->weight }}" class="form-control">
+                                                            </div>
+                                                            <div class="col-md-6 mb-3">
+                                                                <label class="form-label">Carat</label>
+                                                                <input type="text" name="carat"
+                                                                    value="{{ $item->carat }}" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Description</label>
+                                                            <textarea class="form-control" name="description">{{ $item->description }}</textarea>
+                                                        </div>
+                                                        <div class="new-employee-field">
+                                                            <label class="form-label">Image</label>
+                                                            <div class="profile-pic-upload">
+                                                                <div class="profile-pic people-profile-pic">
+                                                                    @if ($item->image != null)
+                                                                        <img src="{{ asset('storage/imageProduct/' . $item->image) }}"
+                                                                            alt="avatar">
+                                                                    @else
+                                                                        <img src="{{ asset('assets') }}/img/notfound/not found.png"
+                                                                            alt="avatar">
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <div class="col-md-12">
+                                                                <input class="form-control" name="image"
+                                                                    type="file">
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Status</label>
+                                                            <select class="select" name="status">
+                                                                <option>Choose Status</option>
+                                                                <option value="1"
+                                                                    @if ($item->status == 1) selected="selected" @endif>
+                                                                    Active</option>
+                                                                <option value="2"
+                                                                    @if ($item->status == 2) selected="selected" @endif>
+                                                                    Inactive</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-cancel"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Save
+                                                            changes</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 @endforeach
                             </tbody>
                         </table>
