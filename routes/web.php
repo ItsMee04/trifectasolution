@@ -70,6 +70,8 @@ Route::middleware('auth')->group(function () {
         Route::get('products', [ProductController::class, 'index']);
         Route::post('products', [ProductController::class, 'store']);
         Route::get('products/{id}', [ProductController::class, 'show']);
+        Route::post('products/{id}', [ProductController::class, 'update']);
+        Route::get('delete-products/{id}', [ProductController::class, 'delete']);
 
         Route::get('logout', [AuthController::class, 'logout']);
     });

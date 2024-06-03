@@ -91,4 +91,22 @@ class ProductController extends Controller
         $size    = File::size('storage/imageProduct/' . $image) / 1024;
         return view('admin.product-details', ['product' => $product, 'size' => $size]);
     }
+
+    public function update(Request $request, $id)
+    {
+    }
+
+    public function delete($id)
+    {
+        $listproduct = Product::where('id', $id)->first();
+
+        $path = 'storage/imageProduct/' . $listproduct->photoproduct;
+
+        if (File::exists($path)) {
+            File::delete($path);
+        }
+        Product::where('id', $id)->delete();
+
+        return redirect('product')->with('success-message', 'Data Success Di Hapus !');
+    }
 }

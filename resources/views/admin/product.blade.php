@@ -106,7 +106,7 @@
                                         </td>
                                     </tr>
 
-
+                                    <!-- Edit -->
                                     <div class="modal fade" id="modaledit{{ $item->id }}">
                                         <div class="modal-dialog modal-dialog-centered text-center" role="document">
                                             <div class="modal-content modal-content-demo">

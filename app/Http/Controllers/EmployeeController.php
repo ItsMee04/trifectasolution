@@ -219,11 +219,18 @@ class EmployeeController extends Controller
         $employee = Employee::where('id', $id)->first();
         $user    = User::where('employee_id', $id)->first();
 
+        $path1 = 'storage/avatar/' . $employee->avatar;
+        $path2 = 'storage/signature/' . $employee->signature;
+
+        if (File::exists($path1, $path2)) {
+            File::delete($path1, $path2);
+        }
+
         $deleteemployee = Employee::where('id', $id)->delete();
 
         if ($user != null) {
             if ($deleteemployee) {
-                User::where('iduser', $id)->delete();
+                User::where('user_id', $id)->delete();
             }
         }
 
