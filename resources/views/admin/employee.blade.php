@@ -57,10 +57,17 @@
                                         <td>{{ $item->profession->profession }}</td>
                                         <td>
                                             <div class="userimgname">
-                                                <a href="javascript:void(0);" class="product-img">
-                                                    <img src="{{ asset('storage/avatar/' . $item->avatar) }}"
-                                                        alt="product">
-                                                </a>
+                                                @if ($item->avatar != null)
+                                                    <a href="javascript:void(0);" class="product-img">
+                                                        <img src="{{ asset('storage/avatar/' . $item->avatar) }}"
+                                                            alt="product">
+                                                    </a>
+                                                @else
+                                                    <a href="javascript:void(0);" class="product-img">
+                                                        <img src="{{ asset('assets') }}/img/notfound/notfound.png"
+                                                            alt="product">
+                                                    </a>
+                                                @endif
                                                 <a href="javascript:void(0);">{{ $item->name }}</a>
                                             </div>
                                         </td>
@@ -133,8 +140,16 @@
                                                                     <label class="form-label">Signature</label>
                                                                     <div class="profile-pic-upload">
                                                                         <div class="profile-pic people-profile-pic">
-                                                                            <img src="{{ asset('storage/Signature/' . $item->signature) }}"
-                                                                                alt="Img">
+                                                                            <a href="javascript:void(0);"
+                                                                                class="product-img">
+                                                                                @if ($item->signature != null)
+                                                                                    <img src="{{ asset('storage/Signature/' . $item->signature) }}"
+                                                                                        alt="product">
+                                                                                @else
+                                                                                    <img src="{{ asset('assets') }}/img/notfound/not found.png"
+                                                                                        alt="product">
+                                                                                @endif
+                                                                            </a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -148,8 +163,13 @@
                                                                     <label class="form-label">Avatar</label>
                                                                     <div class="profile-pic-upload">
                                                                         <div class="profile-pic people-profile-pic">
-                                                                            <img src="{{ asset('storage/avatar/' . $item->avatar) }}"
-                                                                                alt="Img">
+                                                                            @if ($item->avatar != null)
+                                                                                <img src="{{ asset('storage/avatar/' . $item->avatar) }}"
+                                                                                    alt="avatar">
+                                                                            @else
+                                                                                <img src="{{ asset('assets') }}/img/notfound/not found.png"
+                                                                                    alt="avatar">
+                                                                            @endif
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -272,8 +292,19 @@
                                                                     <label class="form-label">Signature</label>
                                                                     <div class="profile-pic-upload">
                                                                         <div class="profile-pic people-profile-pic">
-                                                                            <img src="{{ asset('storage/Signature/' . $item->signature) }}"
-                                                                                alt="Img">
+                                                                            @if ($item->signature != null)
+                                                                                <a href="javascript:void(0);"
+                                                                                    class="product-img">
+                                                                                    <img src="{{ asset('storage/Signature/' . $item->signature) }}"
+                                                                                        alt="product">
+                                                                                </a>
+                                                                            @else
+                                                                                <a href="javascript:void(0);"
+                                                                                    class="product-img">
+                                                                                    <img src="{{ asset('assets') }}/img/notfound/not found.png"
+                                                                                        alt="product">
+                                                                                </a>
+                                                                            @endif
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -283,8 +314,19 @@
                                                                     <label class="form-label">Avatar</label>
                                                                     <div class="profile-pic-upload">
                                                                         <div class="profile-pic people-profile-pic">
-                                                                            <img src="{{ asset('storage/avatar/' . $item->avatar) }}"
-                                                                                alt="Img">
+                                                                            @if ($item->avatar != null)
+                                                                                <a href="javascript:void(0);"
+                                                                                    class="product-img">
+                                                                                    <img src="{{ asset('storage/avatar/' . $item->avatar) }}"
+                                                                                        alt="product">
+                                                                                </a>
+                                                                            @else
+                                                                                <a href="javascript:void(0);"
+                                                                                    class="product-img">
+                                                                                    <img src="{{ asset('assets') }}/img/notfound/not found.png"
+                                                                                        alt="product">
+                                                                                </a>
+                                                                            @endif
                                                                         </div>
                                                                     </div>
                                                                 </div>

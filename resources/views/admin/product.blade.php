@@ -61,14 +61,23 @@
                                         </td>
                                         <td>
                                             <div class="productimgname">
-                                                <a href="javascript:void(0);" class="product-img stock-img">
-                                                    <img src="{{ asset('storage/imageProduct/' . $item->image) }}"
-                                                        alt="product">
+                                                @if ($item->image != null)
+                                                    <a href="javascript:void(0);" class="product-img stock-img">
+                                                        <img src="{{ asset('storage/imageProduct/' . $item->image) }}"
+                                                            alt="product">
+                                                    </a>
+                                                @else
+                                                    <a href="javascript:void(0);" class="product-img stock-img">
+                                                        <img src="{{ asset('assets') }}/img/notfound/notfound.png"
+                                                            alt="product">
+                                                    </a>
+                                                @endif
+                                                <a href="javascript:void(0);"><strong>{{ $item->name }}</strong>
                                                 </a>
-                                                <a href="javascript:void(0);">{{ $item->name }} </a>
                                             </div>
                                         </td>
-                                        <td>{{ $item->codeproduct }} </td>
+                                        <td><a href="products/{{ $item->id }}"><strong>{{ $item->codeproduct }}
+                                                </strong></a></td>
                                         <td>{{ $item->type->type }}</td>
                                         <td>{{ $item->category->category }}</td>
                                         <td>{{ 'Rp.' . ' ' . number_format($item->sellingprice, 2) }}</td>
@@ -81,7 +90,7 @@
                                         </td>
                                         <td class="action-table-data">
                                             <div class="edit-delete-action">
-                                                <a class="me-2 edit-icon  p-2" href="product-details.html">
+                                                <a class="me-2 edit-icon  p-2" href="products/{{ $item->id }}">
                                                     <i data-feather="eye" class="feather-eye"></i>
                                                 </a>
                                                 <a class="me-2 p-2" href="edit-product.html">

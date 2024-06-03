@@ -6,6 +6,8 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -80,5 +82,13 @@ class ProductController extends Controller
         ]);
 
         return redirect('products')->with('success-message', 'Data Success Disimpan !');
+    }
+
+    public function show($id)
+    {
+        $product = Product::where('id', $id)->first();
+        $image   = Product::where('id', $id)->first()->image;
+        $size    = File::size('storage/imageProduct/' . $image) / 1024;
+        return view('admin.product-details', ['product' => $product, 'size' => $size]);
     }
 }

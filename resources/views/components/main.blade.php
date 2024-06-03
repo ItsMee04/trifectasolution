@@ -23,6 +23,8 @@
 
     <link rel="stylesheet" href="{{ asset('assets') }}/plugins/select2/css/select2.min.css">
 
+    <link rel="stylesheet" href="{{ asset('assets') }}/plugins/owlcarousel/owl.carousel.min.css">
+
     <link rel="stylesheet" href="{{ asset('assets') }}/plugins/summernote/summernote-bs4.min.css">
 
     <link rel="stylesheet" href="{{ asset('assets') }}/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css">
@@ -112,6 +114,8 @@
     <script src="{{ asset('assets') }}/js/dataTables.bootstrap5.min.js" type="text/javascript"></script>
 
     <script src="{{ asset('assets') }}/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+
+    <script src="{{ asset('assets') }}/plugins/owlcarousel/owl.carousel.min.js" type="text/javascript"></script>
 
     <script src="{{ asset('assets') }}/plugins/toastr/toastr.min.js" type="text/javascript"></script>
     <script src="{{ asset('assets') }}/plugins/toastr/toastr.js" type="text/javascript"></script>

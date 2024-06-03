@@ -5,7 +5,7 @@
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Main</h6>
                     <ul>
-                        <li class="@if (request()->route()->uri == 'dashboard') active @endif"><a href="dashboard"><i
+                        <li class="@if (request()->route()->uri == 'dashboard') active @endif"><a href="/dashboard"><i
                                     data-feather="grid"></i><span>Dashboard</span></a>
                         </li>
                     </ul>
@@ -13,14 +13,14 @@
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">User Management</h6>
                     <ul>
-                        <li class="@if (request()->route()->uri == 'employee') active @endif"><a href="employee"><i
+                        <li class="@if (request()->route()->uri == 'employee') active @endif"><a href="/employee"><i
                                     data-feather="user"></i><span>Employees</span></a>
                         </li>
-                        <li class="@if (request()->route()->uri == 'profession') active @endif"><a href="profession"><i
+                        <li class="@if (request()->route()->uri == 'profession') active @endif"><a href="/profession"><i
                                     data-feather="users"></i><span>Profession</span></a>
-                        <li class="@if (request()->route()->uri == 'users') active @endif"><a href="users"><i
+                        <li class="@if (request()->route()->uri == 'users') active @endif"><a href="/users"><i
                                     data-feather="user-check"></i><span>Users</span></a></li>
-                        <li class="@if (request()->route()->uri == 'role') active @endif"><a href="role"><i
+                        <li class="@if (request()->route()->uri == 'role') active @endif"><a href="/role"><i
                                     data-feather="shield"></i><span>Roles &
                                     Permissions</span></a></li>
                     </ul>
@@ -28,13 +28,13 @@
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Inventory</h6>
                     <ul>
-                        <li><a href="products"><i data-feather="box"></i><span>Products</span></a></li>
-                        <li class="@if (request()->route()->uri == 'type') active @endif"><a href="type"><i
+                        <li><a href="/products"><i data-feather="box"></i><span>Products</span></a></li>
+                        <li class="@if (request()->route()->uri == 'type') active @endif"><a href="/type"><i
                                     data-feather="codesandbox"></i><span>Type
                                     Products</span></a></li>
                         <li><a href="low-stocks.html"><i data-feather="trending-down"></i><span>Low
                                     Stocks</span></a></li>
-                        <li class="@if (request()->route()->uri == 'category') active @endif"><a href="category"><i
+                        <li class="@if (request()->route()->uri == 'category') active @endif"><a href="/category"><i
                                     data-feather="codepen"></i><span>Category</span></a>
                         </li>
                         <li><a href="sub-categories.html"><i data-feather="speaker"></i><span>Sub
