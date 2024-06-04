@@ -7,6 +7,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\ScanController;
 use App\Http\Controllers\Type;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
@@ -72,6 +73,9 @@ Route::middleware('auth')->group(function () {
         Route::get('products/{id}', [ProductController::class, 'show']);
         Route::post('products/{id}', [ProductController::class, 'update']);
         Route::get('delete-products/{id}', [ProductController::class, 'delete']);
+
+        Route::get('scan', [ScanController::class, 'index']);
+        Route::post('scanqr', [ScanController::class, 'scanqr']);
 
         Route::get('logout', [AuthController::class, 'logout']);
     });

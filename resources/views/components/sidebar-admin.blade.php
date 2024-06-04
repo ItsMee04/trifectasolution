@@ -28,26 +28,16 @@
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Inventory</h6>
                     <ul>
-                        <li><a href="/products"><i data-feather="box"></i><span>Products</span></a></li>
+                        <li class="@if (request()->route()->uri == 'products' || request()->route()->uri == 'products/{id}') active @endif"><a href="/products"><i
+                                    data-feather="box"></i><span>Products</span></a></li>
                         <li class="@if (request()->route()->uri == 'type') active @endif"><a href="/type"><i
                                     data-feather="codesandbox"></i><span>Type
                                     Products</span></a></li>
-                        <li><a href="low-stocks.html"><i data-feather="trending-down"></i><span>Low
-                                    Stocks</span></a></li>
                         <li class="@if (request()->route()->uri == 'category') active @endif"><a href="/category"><i
                                     data-feather="codepen"></i><span>Category</span></a>
                         </li>
-                        <li><a href="sub-categories.html"><i data-feather="speaker"></i><span>Sub
-                                    Category</span></a></li>
-                        <li><a href="brand-list.html"><i data-feather="tag"></i><span>Brands</span></a></li>
-                        <li><a href="units.html"><i data-feather="speaker"></i><span>Units</span></a></li>
-                        <li><a href="varriant-attributes.html"><i data-feather="layers"></i><span>Variant
-                                    Attributes</span></a></li>
-                        <li><a href="warranty.html"><i data-feather="bookmark"></i><span>Warranties</span></a>
-                        </li>
-                        <li><a href="barcode.html"><i data-feather="align-justify"></i><span>Print
-                                    Barcode</span></a></li>
-                        <li><a href="qrcode.html"><i data-feather="maximize"></i><span>Print QR
+                        <li class="@if (request()->route()->uri == 'scan') active @endif"><a href="/scan"><i
+                                    data-feather="maximize"></i><span>Scan QR
                                     Code</span></a>
                         </li>
                     </ul>

@@ -90,7 +90,7 @@
                                         </td>
                                         <td class="action-table-data">
                                             <div class="edit-delete-action">
-                                                <a class="me-2 edit-icon  p-2" href="products/{{ $item->id }}">
+                                                <a class="me-2 edit-icon  p-2" href="products/{{ $item->codeproduct }}">
                                                     <i data-feather="eye" class="feather-eye"></i>
                                                 </a>
                                                 <a class="me-2 p-2" data-bs-effect="effect-sign" data-bs-toggle="modal"
