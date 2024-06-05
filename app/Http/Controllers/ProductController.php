@@ -167,13 +167,13 @@ class ProductController extends Controller
     {
         $listproduct = Product::where('id', $id)->first();
 
-        $path = 'storage/imageProduct/' . $listproduct->photoproduct;
+        $path = 'storage/imageProduct/' . $listproduct->image;
 
         if (File::exists($path)) {
             File::delete($path);
         }
         Product::where('id', $id)->delete();
 
-        return redirect('product')->with('success-message', 'Data Success Di Hapus !');
+        return redirect('products')->with('success-message', 'Data Success Di Hapus !');
     }
 }
