@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name', 100);
             $table->text('address');
-            $table->integer('phone');
-            $table->integer('identity');
-            $table->integer('point');
+            $table->string('phone');
+            $table->string('identity');
+            $table->integer('point')->default(0);
             $table->date('birthday');
             $table->integer('status');
             $table->timestamps();

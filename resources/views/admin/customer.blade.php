@@ -112,6 +112,11 @@
                                                                 value="{{ $item->identity }}" class="form-control">
                                                         </div>
                                                         <div class="mb-3">
+                                                            <label class="form-label">Birthday</label>
+                                                            <input type="date" name="birthday"
+                                                                value="{{ $item->birthday }}" class="form-control">
+                                                        </div>
+                                                        <div class="mb-3">
                                                             <label class="form-label">Phone</label>
                                                             <input type="text" name="phone"
                                                                 value="{{ $item->phone }}" class="form-control">
@@ -147,8 +152,7 @@
                                                     <h4 class="modal-title">Detail Customer</h4><button aria-label="Close"
                                                         class="btn-close" data-bs-dismiss="modal"></button>
                                                 </div>
-                                                <form action="customer/{{ $item->id }}" method="POST"
-                                                    enctype="multipart/form-data">
+                                                <form action="" method="POST" enctype="multipart/form-data">
                                                     @csrf
                                                     <div class="modal-body text-start">
                                                         <div class="mb-3">
@@ -165,6 +169,12 @@
                                                             <label class="form-label">Identity</label>
                                                             <input type="text" name="phone"
                                                                 value="{{ $item->identity }}" class="form-control"
+                                                                readonly>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Birthday</label>
+                                                            <input type="text" name="birthday"
+                                                                value="{{ $item->birthday }}" class="form-control"
                                                                 readonly>
                                                         </div>
                                                         <div class="mb-3">
@@ -224,6 +234,10 @@
                         <div class="mb-3">
                             <label class="form-label">Idendity</label>
                             <input type="text" name="identity" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Birthday</label>
+                            <input type="date" name="birthday" class="form-control">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Phone</label>

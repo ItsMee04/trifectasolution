@@ -70,6 +70,8 @@ Route::middleware('auth')->group(function () {
 
         Route::get('category', [CategoryController::class, 'index']);
         Route::post('category', [CategoryController::class, 'store']);
+        Route::post('category/{id}', [CategoryController::class, 'update']);
+        Route::get('category/{id}', [CategoryController::class, 'delete']);
 
         Route::get('products', [ProductController::class, 'index']);
         Route::post('products', [ProductController::class, 'store']);
@@ -86,6 +88,9 @@ Route::middleware('auth')->group(function () {
         Route::get('supplier/{id}', [SupplierController::class, 'delete']);
 
         Route::get('customer', [CustomerController::class, 'index']);
+        Route::post('customer', [CustomerController::class, 'store']);
+        Route::post('customer/{id}', [CustomerController::class, 'update']);
+        Route::get('customer/{id}', [CustomerController::class, 'delete']);
 
         Route::get('logout', [AuthController::class, 'logout']);
     });
