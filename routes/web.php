@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProductController;
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use SebastianBergmann\Comparator\TypeComparator;
+use Symfony\Component\Finder\Iterator\CustomFilterIterator;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,6 +84,8 @@ Route::middleware('auth')->group(function () {
         Route::post('supplier', [SupplierController::class, 'store']);
         Route::post('supplier/{id}', [SupplierController::class, 'update']);
         Route::get('supplier/{id}', [SupplierController::class, 'delete']);
+
+        Route::get('customer', [CustomerController::class, 'index']);
 
         Route::get('logout', [AuthController::class, 'logout']);
     });

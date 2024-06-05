@@ -76,9 +76,9 @@
                 <li class="submenu-open">
                     <h6 class="submenu-hdr">Peoples</h6>
                     <ul>
-                        <li><a href="customers.html"><i data-feather="user"></i><span>Customers</span></a>
+                        <li><a href="/customer"><i data-feather="user"></i><span>Customers</span></a>
                         </li>
-                        <li><a href="supplier"><i data-feather="users"></i><span>Suppliers</span></a>
+                        <li><a href="/supplier"><i data-feather="users"></i><span>Suppliers</span></a>
                         </li>
                         <li><a href="store-list.html"><i data-feather="home"></i><span>Stores</span></a></li>
                         <li><a href="warehouse.html"><i data-feather="archive"></i><span>Warehouses</span></a>
