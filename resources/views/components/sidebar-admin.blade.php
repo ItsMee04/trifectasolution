@@ -43,17 +43,6 @@
                     </ul>
                 </li>
                 <li class="submenu-open">
-                    <h6 class="submenu-hdr">Stock</h6>
-                    <ul>
-                        <li><a href="manage-stocks.html"><i data-feather="package"></i><span>Manage
-                                    Stock</span></a></li>
-                        <li><a href="stock-adjustment.html"><i data-feather="clipboard"></i><span>Stock
-                                    Adjustment</span></a></li>
-                        <li><a href="stock-transfer.html"><i data-feather="truck"></i><span>Stock
-                                    Transfer</span></a></li>
-                    </ul>
-                </li>
-                <li class="submenu-open">
                     <h6 class="submenu-hdr">Sales</h6>
                     <ul>
                         <li><a href="sales-list.html"><i data-feather="shopping-cart"></i><span>Sales</span></a>
@@ -85,24 +74,11 @@
                     </ul>
                 </li>
                 <li class="submenu-open">
-                    <h6 class="submenu-hdr">Finance & Accounts</h6>
-                    <ul>
-                        <li class="submenu">
-                            <a href="javascript:void(0);"><i data-feather="file-text"></i><span>Expenses</span><span
-                                    class="menu-arrow"></span></a>
-                            <ul>
-                                <li><a href="expense-list.html">Expenses</a></li>
-                                <li><a href="expense-category.html">Expense Category</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class="submenu-open">
                     <h6 class="submenu-hdr">Peoples</h6>
                     <ul>
                         <li><a href="customers.html"><i data-feather="user"></i><span>Customers</span></a>
                         </li>
-                        <li><a href="suppliers.html"><i data-feather="users"></i><span>Suppliers</span></a>
+                        <li><a href="supplier"><i data-feather="users"></i><span>Suppliers</span></a>
                         </li>
                         <li><a href="store-list.html"><i data-feather="home"></i><span>Stores</span></a></li>
                         <li><a href="warehouse.html"><i data-feather="archive"></i><span>Warehouses</span></a>

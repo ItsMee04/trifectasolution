@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ScanController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\Type;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
@@ -76,6 +77,11 @@ Route::middleware('auth')->group(function () {
 
         Route::get('scan', [ScanController::class, 'index']);
         Route::post('scanqr', [ScanController::class, 'scanqr']);
+
+        Route::get('supplier', [SupplierController::class, 'index']);
+        Route::post('supplier', [SupplierController::class, 'store']);
+        Route::post('supplier/{id}', [SupplierController::class, 'update']);
+        Route::get('supplier/{id}', [SupplierController::class, 'delete']);
 
         Route::get('logout', [AuthController::class, 'logout']);
     });
