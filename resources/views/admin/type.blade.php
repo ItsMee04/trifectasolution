@@ -97,6 +97,27 @@
                                                                 class="form-control">
                                                         </div>
                                                         <div class="mb-3">
+                                                            <div class="new-employee-field">
+                                                                <label class="form-label">Icon</label>
+                                                                <div class="profile-pic-upload">
+                                                                    <div class="profile-pic people-profile-pic">
+                                                                        <a href="javascript:void(0);" class="product-img">
+                                                                            @if ($item->icon != null)
+                                                                                <img src="{{ asset('storage/Icon/' . $item->icon) }}"
+                                                                                    alt="product">
+                                                                            @else
+                                                                                <img src="{{ asset('assets') }}/img/notfound/not found.png"
+                                                                                    alt="product">
+                                                                            @endif
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <input type="file" class="form-control" name="icon">
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3">
                                                             <label class="form-label">Status</label>
                                                             <select class="select" name="status">
                                                                 <option>Choose Status</option>
@@ -137,6 +158,28 @@
                                                             <input type="text" name="name"
                                                                 value="{{ $item->type }}" class="form-control"
                                                                 readonly>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <div class="new-employee-field">
+                                                                <label class="form-label">Icon</label>
+                                                                <div class="profile-pic-upload">
+                                                                    <div class="profile-pic people-profile-pic">
+                                                                        @if ($item->icon != null)
+                                                                            <a href="javascript:void(0);"
+                                                                                class="product-img">
+                                                                                <img src="{{ asset('storage/Icon/' . $item->icon) }}"
+                                                                                    alt="product">
+                                                                            </a>
+                                                                        @else
+                                                                            <a href="javascript:void(0);"
+                                                                                class="product-img">
+                                                                                <img src="{{ asset('assets') }}/img/notfound/not found.png"
+                                                                                    alt="product">
+                                                                            </a>
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label">Status</label>
@@ -181,6 +224,10 @@
                         <div class="mb-3">
                             <label class="form-label">Type Product</label>
                             <input type="text" name="type" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Icon</label>
+                            <input type="file" name="icon" class="form-control">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Status</label>

@@ -8,12 +8,18 @@ use App\Models\Product;
 use App\Models\Customer;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
     public function index()
     {
-        return view('admin.cart');
+        $type = DB::table('type')
+            ->select('id')
+            ->get();
+
+
+        dd($type);
     }
 }
