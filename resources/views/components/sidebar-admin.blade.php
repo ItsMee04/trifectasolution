@@ -84,15 +84,15 @@
                     <ul>
                         <li class="submenu">
                             <a href="javascript:void(0);"
-                                class="@if (request()->route()->uri == 'shopping-cart' ||
+                                class="@if (request()->route()->uri == 'cart' ||
                                         request()->route()->uri == 'orders' ||
                                         request()->route()->uri == 'orders/{id}' ||
                                         request()->route()->uri == 'orders-details/{id}') active subdrop @endif"><i
                                     data-feather="shopping-cart"></i><span>Transaction</span><span
                                     class="menu-arrow"></span></a>
                             <ul>
-                                <li><a href="/shopping-cart"
-                                        class="@if (request()->route()->uri == 'shopping-cart' || request()->route()->uri == 'shopping-cart/{id}') active @endif">Shopping Cart</a></li>
+                                <li><a href="/cart" class="@if (request()->route()->uri == 'shopping-cart' || request()->route()->uri == 'shopping-cart/{id}') active @endif">Shopping
+                                        Cart</a></li>
                                 <li><a href="/orders"
                                         class="@if (request()->route()->uri == 'orders' || request()->route()->uri == 'orders-details/{id}') active @endif">Orders</a></li>
                             </ul>

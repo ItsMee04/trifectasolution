@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
@@ -92,6 +93,7 @@ Route::middleware('auth')->group(function () {
         Route::post('customer/{id}', [CustomerController::class, 'update']);
         Route::get('customer/{id}', [CustomerController::class, 'delete']);
 
+        Route::get('cart', [CartController::class, 'index']);
         Route::get('logout', [AuthController::class, 'logout']);
     });
 });
