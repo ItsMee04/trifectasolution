@@ -25,6 +25,31 @@ class CartController extends Controller
         $productanting      = Product::where('type_id', $typeanting)->where('status', 1)->get();
         $productgelang      = Product::where('type_id', $typegelang)->where('status', 1)->get();
         $productkalung      = Product::where('type_id', $typekalung)->where('status', 1)->get();
+        $product            = Product::all();
+
+        $customer = Customer::all();
+
+        $id = "T-";
+        $tahun = date('Y');
+
+        $idTransaction = Transaction::latest()->first();
+
+        if ($idTransaction == null) {
+            $nourut = "000001";
+            $idtransaksi = $id . $tahun . $nourut;
+        } else {
+            $nourut = substr($idTransaction->idtransaction, 6, 6) + 1;
+            $nourut = str_pad($nourut, 6, "0", STR_PAD_LEFT);
+
+            $idtransaksi = $id . $tahun . $nourut;
+        }
+
+        $count = Cart::where('users_id', Auth::user()->id)->where('status', 1)->count();
+
+        $cartactive = Cart::where('users_id', Auth::user()->id)
+            ->where('status', 1)
+            ->latest('codecart')
+            ->first();
 
         return view('admin.cart', [
             'type'          => $type,
@@ -36,6 +61,10 @@ class CartController extends Controller
             'productanting' => $productanting,
             'productgelang' => $productgelang,
             'productkalung' => $productkalung,
+            'customer'      => $customer,
+            'product'       => $product,
+            'idtransaksi'   => $idtransaksi,
+            'count'         => $count,
         ]);
     }
 }

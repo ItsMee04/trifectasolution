@@ -24,7 +24,7 @@ class CustomerController extends Controller
             'name'      => 'required',
             'address'   => 'required',
             'identity'  => 'required|integer',
-            'phone'     => 'required|integer',
+            'phone'     => 'required',
             'birthday'  => 'required',
             'status'    => 'required',
         ], $messages);
