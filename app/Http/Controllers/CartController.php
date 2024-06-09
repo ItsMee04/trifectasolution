@@ -15,11 +15,27 @@ class CartController extends Controller
 {
     public function index()
     {
-        $type = DB::table('type')
-            ->select('id')
-            ->get();
+        $type = Type::all();
+        $typecincin    = Type::where('type', 'CINCIN')->first()->id;
+        $typeanting    = Type::where('type', 'ANTING')->first()->id;
+        $typegelang    = Type::where('type', 'GELANG')->first()->id;
+        $typekalung    = Type::where('type', 'KALUNG')->first()->id;
 
+        $productcincin  = Product::where('type_id', $typecincin)->where('status', 1)->get();
+        $productanting      = Product::where('type_id', $typeanting)->where('status', 1)->get();
+        $productgelang      = Product::where('type_id', $typegelang)->where('status', 1)->get();
+        $productkalung      = Product::where('type_id', $typekalung)->where('status', 1)->get();
 
-        dd($type);
+        return view('admin.cart', [
+            'type'          => $type,
+            'typecincin'    => $typecincin,
+            'typeanting'    => $typeanting,
+            'typegelang'    => $typegelang,
+            'typekalung'    => $typekalung,
+            'productcincin' => $productcincin,
+            'productanting' => $productanting,
+            'productgelang' => $productgelang,
+            'productkalung' => $productkalung,
+        ]);
     }
 }
