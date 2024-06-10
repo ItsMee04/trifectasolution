@@ -52,9 +52,9 @@
                                         Barcode</a></li>
                             </ul>
                         </li>
-                        <li><a href="/supplier" class="@if (request()->route()->uri == 'supplier') active @endif"><i
+                        <li class="@if (request()->route()->uri == 'supplier') active @endif"><a href="/supplier"><i
                                     data-feather="codepen"></i><span>Suplier</span></a></li>
-                        <li><a href="/customer" class="@if (request()->route()->uri == 'customer' || request()->route()->uri == 'edit-customer/{id}') active @endif"><i
+                        <li class="@if (request()->route()->uri == 'customer') active @endif"><a href="/customer"><i
                                     data-feather="users"></i><span>Customer</span></a></li>
                     </ul>
                 </li>
