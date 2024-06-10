@@ -5,6 +5,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfessionController;
@@ -92,6 +93,11 @@ Route::middleware('auth')->group(function () {
         Route::post('customer', [CustomerController::class, 'store']);
         Route::post('customer/{id}', [CustomerController::class, 'update']);
         Route::get('customer/{id}', [CustomerController::class, 'delete']);
+
+        Route::get('discount', [DiscountController::class, 'index']);
+        Route::post('discount', [DiscountController::class, 'store']);
+        Route::post('discount/{id}', [DiscountController::class, 'update']);
+        Route::get('discount/{id}', [DiscountController::class, 'delete']);
 
         Route::get('cart', [CartController::class, 'index']);
         Route::get('logout', [AuthController::class, 'logout']);

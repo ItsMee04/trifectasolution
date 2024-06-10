@@ -91,7 +91,7 @@
                                     data-feather="shopping-cart"></i><span>Transaction</span><span
                                     class="menu-arrow"></span></a>
                             <ul>
-                                <li><a href="/cart" class="@if (request()->route()->uri == 'shopping-cart' || request()->route()->uri == 'shopping-cart/{id}') active @endif">Shopping
+                                <li><a href="/cart" class="@if (request()->route()->uri == 'cart' || request()->route()->uri == 'shopping-cart/{id}') active @endif">Shopping
                                         Cart</a></li>
                                 <li><a href="/orders"
                                         class="@if (request()->route()->uri == 'orders' || request()->route()->uri == 'orders-details/{id}') active @endif">Orders</a></li>
@@ -112,6 +112,9 @@
                                         class="@if (request()->route()->uri == 'purchase-supplier' || request()->route()->uri == 'edit-purchase-supplier/{id}') active @endif">Purchase
                                         Suplier</a></li>
                             </ul>
+                        </li>
+                        <li class="@if (request()->route()->uri == 'discount') active @endif">
+                            <a href="/discount"><i data-feather="dollar-sign"></i><span>Discount</span></a>
                         </li>
                     </ul>
                 </li>

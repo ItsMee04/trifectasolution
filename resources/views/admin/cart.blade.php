@@ -37,7 +37,8 @@
                                             <div class="col-sm-2 col-md-6 col-lg-3 col-xl-3">
                                                 <div class="product-info default-cover card">
                                                     <a href="javascript:void(0);" class="img-bg">
-                                                        <img src="assets/img/products/pos-product-01.png" alt="Products" />
+                                                        <img src="{{ asset('storage/imageProduct/' . $item->image) }}"
+                                                            alt="Products" />
                                                         <span><i data-feather="check" class="feather-16"></i></span>
                                                     </a>
                                                     <h6 class="cat-name">
@@ -61,7 +62,7 @@
                                             <div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
                                                 <div class="product-info default-cover card">
                                                     <a href="javascript:void(0);" class="img-bg">
-                                                        <img src="assets/img/products/pos-product-05.png" alt="Products" />
+                                                        <img src="{{ asset('storage/imageProduct/' . $item->image) }}" />
                                                         <span><i data-feather="check" class="feather-16"></i></span>
                                                     </a>
                                                     <h6 class="cat-name">
@@ -85,7 +86,7 @@
                                             <div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
                                                 <div class="product-info default-cover card">
                                                     <a href="javascript:void(0);" class="img-bg">
-                                                        <img src="assets/img/products/pos-product-05.png" alt="Products" />
+                                                        <img src="{{ asset('storage/imageProduct/' . $item->image) }}" />
                                                         <span><i data-feather="check" class="feather-16"></i></span>
                                                     </a>
                                                     <h6 class="cat-name">
@@ -109,7 +110,8 @@
                                             <div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
                                                 <div class="product-info default-cover card">
                                                     <a href="javascript:void(0);" class="img-bg">
-                                                        <img src="assets/img/products/pos-product-05.png" alt="Products" />
+                                                        <img src="{{ asset('storage/imageProduct/' . $item->image) }}"
+                                                            alt="Products" />
                                                         <span><i data-feather="check" class="feather-16"></i></span>
                                                     </a>
                                                     <h6 class="cat-name">
@@ -133,7 +135,8 @@
                                             <div class="col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2">
                                                 <div class="product-info default-cover card">
                                                     <a href="javascript:void(0);" class="img-bg">
-                                                        <img src="assets/img/products/pos-product-05.png" alt="Products" />
+                                                        <img src="{{ asset('storage/imageProduct/' . $item->image) }}"
+                                                            alt="Products" />
                                                         <span><i data-feather="check" class="feather-16"></i></span>
                                                     </a>
                                                     <h6 class="cat-name">
@@ -183,61 +186,55 @@
                                 <h6 class="d-flex align-items-center mb-0">
                                     Product Added<span class="count">{{ $count }}</span>
                                 </h6>
-                                <a href="javascript:void(0);" class="d-flex align-items-center text-danger"><span
-                                        class="me-1"><i data-feather="x" class="feather-16"></i></span>Clear all</a>
+                                @if ($cartactive == null)
+                                @else
+                                    <a href="javascript:void(0);" class="d-flex align-items-center text-danger"><span
+                                            class="me-1"><i data-feather="x" class="feather-16"></i></span>Clear
+                                        all</a>
+                                @endif
                             </div>
                             <div class="product-wrap">
-                                <div class="product-list d-flex align-items-center justify-content-between">
-                                    <div class="d-flex align-items-center product-info" data-bs-toggle="modal"
-                                        data-bs-target="#products">
-                                        <a href="javascript:void(0);" class="img-bg">
-                                            <img src="assets/img/products/pos-product-17.png" alt="Products" />
-                                        </a>
-                                        <div class="info">
-                                            <span>PT0005</span>
-                                            <h6>
-                                                <a href="javascript:void(0);">Red Nike Laser</a>
-                                            </h6>
-                                            <p>$2000</p>
+                                @foreach ($cart as $item)
+                                    <div class="product-list d-flex align-items-center justify-content-between">
+                                        <div class="d-flex align-items-center product-info" data-bs-toggle="modal"
+                                            data-bs-target="#products">
+                                            <a href="javascript:void(0);" class="img-bg">
+                                                <img src="{{ asset('storage/imageProduct/' . $item->product->image) }}"
+                                                    alt="Products" />
+                                            </a>
+                                            <div class="info">
+                                                <span>{{ $item->codecart }}</span>
+                                                <h6>
+                                                    <a href="javascript:void(0);">{{ $item->product->name }}</a>
+                                                </h6>
+                                                <p>{{ 'Rp.' . ' ' . number_format($item->product->sellingprice) }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center action">
+                                            <a class="btn-icon delete-icon"
+                                                onclick="confirm_modal('cart/{{ $item->id }}');"
+                                                data-bs-toggle="modal" data-bs-target="#modal_delete">
+                                                <i data-feather="trash-2" class="feather-14"></i>
+                                            </a>
                                         </div>
                                     </div>
-                                    <div class="qty-item text-center">
-                                        <a href="javascript:void(0);"
-                                            class="dec d-flex justify-content-center align-items-center"
-                                            data-bs-toggle="tooltip" data-bs-placement="top" title="minus"><i
-                                                data-feather="minus-circle" class="feather-14"></i></a>
-                                        <input type="text" class="form-control text-center" name="qty"
-                                            value="1" />
-                                        <a href="javascript:void(0);"
-                                            class="inc d-flex justify-content-center align-items-center"
-                                            data-bs-toggle="tooltip" data-bs-placement="top" title="plus"><i
-                                                data-feather="plus-circle" class="feather-14"></i></a>
-                                    </div>
-                                    <div class="d-flex align-items-center action">
-                                        <a class="btn-icon edit-icon me-2" href="#" data-bs-toggle="modal"
-                                            data-bs-target="#edit-product">
-                                            <i data-feather="edit" class="feather-14"></i>
-                                        </a>
-                                        <a class="btn-icon delete-icon confirm-text" href="javascript:void(0);">
-                                            <i data-feather="trash-2" class="feather-14"></i>
-                                        </a>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                         <div class="block-section">
                             <div class="selling-info">
                                 <div class="row">
-                                    <div class="col-12 col-sm-4">
+                                    <div class="col-12 col-sm-12">
                                         <div class="input-block">
                                             <label>Discount</label>
                                             <select class="select">
-                                                <option>10%</option>
-                                                <option>10%</option>
-                                                <option>15%</option>
-                                                <option>20%</option>
-                                                <option>25%</option>
-                                                <option>30%</option>
+                                                <option>Choose Promo</option>
+                                                @foreach ($discount as $item)
+                                                    <option value="{{ $item->value }}"> {{ $item->name }} <strong>
+                                                            (Discount
+                                                            {{ $item->value }} %)
+                                                        </strong></option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>

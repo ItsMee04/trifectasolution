@@ -6,6 +6,7 @@ use App\Models\Cart;
 use App\Models\Type;
 use App\Models\Product;
 use App\Models\Customer;
+use App\Models\Discount;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -51,6 +52,10 @@ class CartController extends Controller
             ->latest('codecart')
             ->first();
 
+        $cart  = Cart::where('status', 1)->where('users_id', Auth::user()->id)->get();
+
+        $discount = Discount::where('status', 1)->get();
+
         return view('admin.cart', [
             'type'          => $type,
             'typecincin'    => $typecincin,
@@ -65,6 +70,9 @@ class CartController extends Controller
             'product'       => $product,
             'idtransaksi'   => $idtransaksi,
             'count'         => $count,
+            'cartactive'    => $cartactive,
+            'cart'          => $cart,
+            'discount'      => $discount,
         ]);
     }
 }

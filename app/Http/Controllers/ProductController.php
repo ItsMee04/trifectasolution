@@ -13,7 +13,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $product = Product::where('status', 1)->get();
+        $product = Product::all();
         $type = Type::all();
         $category   = Category::where('status', 1)->get();
 

@@ -76,7 +76,7 @@
                                                 </a>
                                             </div>
                                         </td>
-                                        <td><a href="products/{{ $item->id }}"><strong>{{ $item->codeproduct }}
+                                        <td><a href="products/{{ $item->codeproduct }}"><strong>{{ $item->codeproduct }}
                                                 </strong></a></td>
                                         <td>{{ $item->type->type }}</td>
                                         <td>{{ $item->category->category }}</td>
