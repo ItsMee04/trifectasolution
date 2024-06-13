@@ -51,6 +51,10 @@
                                                         <span>{{ $item->weight }}/ gram</span>
                                                         <p>{{ number_format($item->sellingprice) }}</p>
                                                     </div>
+                                                    <div class="text-center">
+                                                        <a href="/add-to-cart/{{ $item->codeproduct }}"
+                                                            class="btn btn-sm btn-outline-primary ms-1">Add To Cart</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         @endforeach
@@ -227,7 +231,7 @@
                                     <div class="col-12 col-sm-12">
                                         <div class="input-block">
                                             <label>Discount</label>
-                                            <select class="select">
+                                            <select class="select" id="dicount" name="discount">
                                                 <option>Choose Promo</option>
                                                 @foreach ($discount as $item)
                                                     <option value="{{ $item->value }}"> {{ $item->name }} <strong>
@@ -251,8 +255,8 @@
                                         <td class="text-end">$60,454</td>
                                     </tr>
                                     <tr>
-                                        <td class="danger">Discount (10%)</td>
-                                        <td class="danger text-end">$15.21</td>
+                                        <td class="danger">Discount</td>
+                                        <td class="danger text-end"><span id="dis"></span></td>
                                     </tr>
                                     <tr>
                                         <td>Total</td>
@@ -302,5 +306,12 @@
             });
             document.getElementById('delete_link').setAttribute('href', delete_url);
         }
+    </script>
+
+    <script>
+        $('#discount').on('change', function() {
+            const selectedPackage = $('#discount').val();
+            $('#dis').text(selectedPackage);
+        });
     </script>
 @endsection
