@@ -100,6 +100,9 @@ Route::middleware('auth')->group(function () {
         Route::get('discount/{id}', [DiscountController::class, 'delete']);
 
         Route::get('cart', [CartController::class, 'index']);
+        Route::get('addcart/{id}', [CartController::class, 'addcart']);
+        Route::get('deletecart/{id}', [CartController::class, 'deletecart']);
+
         Route::get('logout', [AuthController::class, 'logout']);
     });
 });

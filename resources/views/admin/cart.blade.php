@@ -51,8 +51,9 @@
                                                         <span>{{ $item->weight }}/ gram</span>
                                                         <p>{{ number_format($item->sellingprice) }}</p>
                                                     </div>
-                                                    <div class="text-center">
-                                                        <a href="/add-to-cart/{{ $item->codeproduct }}"
+                                                    <div
+                                                        class="align-items-center justify-content-between price text-center">
+                                                        <a href="addcart/{{ $item->codeproduct }}"
                                                             class="btn btn-sm btn-outline-primary ms-1">Add To Cart</a>
                                                     </div>
                                                 </div>
@@ -79,6 +80,11 @@
                                                         <span>{{ $item->weight }}/ gram</span>
                                                         <p>{{ number_format($item->sellingprice) }}</p>
                                                     </div>
+                                                    <div
+                                                        class="align-items-center justify-content-between price text-center">
+                                                        <a href="addcart/{{ $item->codeproduct }}"
+                                                            class="btn btn-sm btn-outline-primary ms-1">Add To Cart</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         @endforeach
@@ -102,6 +108,11 @@
                                                     <div class="d-flex align-items-center justify-content-between price">
                                                         <span>{{ $item->weight }}/ gram</span>
                                                         <p>{{ number_format($item->sellingprice) }}</p>
+                                                    </div>
+                                                    <div
+                                                        class="align-items-center justify-content-between price text-center">
+                                                        <a href="addcart/{{ $item->codeproduct }}"
+                                                            class="btn btn-sm btn-outline-primary ms-1">Add To Cart</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -128,6 +139,11 @@
                                                         <span>{{ $item->weight }}/ gram</span>
                                                         <p>{{ number_format($item->sellingprice) }}</p>
                                                     </div>
+                                                    <div
+                                                        class="align-items-center justify-content-between price text-center">
+                                                        <a href="addcart/{{ $item->codeproduct }}"
+                                                            class="btn btn-sm btn-outline-primary ms-1">Add To Cart</a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         @endforeach
@@ -152,6 +168,11 @@
                                                     <div class="d-flex align-items-center justify-content-between price">
                                                         <span>{{ $item->weight }}/ gram</span>
                                                         <p>{{ number_format($item->sellingprice) }}</p>
+                                                    </div>
+                                                    <div
+                                                        class="align-items-center justify-content-between price text-center">
+                                                        <a href="addcart/{{ $item->codeproduct }}"
+                                                            class="btn btn-sm btn-outline-primary ms-1">Add To Cart</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -216,7 +237,7 @@
                                         </div>
                                         <div class="d-flex align-items-center action">
                                             <a class="btn-icon delete-icon"
-                                                onclick="confirm_modal('cart/{{ $item->id }}');"
+                                                onclick="confirm_modal('deletecart/{{ $item->id }}');"
                                                 data-bs-toggle="modal" data-bs-target="#modal_delete">
                                                 <i data-feather="trash-2" class="feather-14"></i>
                                             </a>

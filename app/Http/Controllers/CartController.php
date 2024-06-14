@@ -75,4 +75,54 @@ class CartController extends Controller
             'discount'      => $discount,
         ]);
     }
+
+    public function addcart($id)
+    {
+        $product = Product::where('codeproduct', $id)->first()->id;
+        $codecart = Cart::latest('codecart')->first();
+
+        $id = "C-";
+        $tahun = date('Y');
+
+        if ($codecart == null) {
+            $nourut = "000001";
+            $idcart = $id . $tahun . $nourut;
+
+            Cart::create([
+                'codecart'      =>  $idcart,
+                'product_id'    =>  $product,
+                'status'        =>  1,
+                'users_id'      =>  Auth::user()->id,
+            ]);
+        } elseif ($codecart->status == 1) {
+            $nourut = substr($codecart->codecart, 6, 6);
+            $idcart = $id . $tahun . $nourut;
+
+            Cart::create([
+                'codecart'      =>  $idcart,
+                'product_id'    =>  $product,
+                'status'        =>  1,
+                'users_id'      =>  Auth::user()->id,
+            ]);
+        } elseif ($codecart->status == 2) {
+            $nourut = substr($codecart->codecart, 6, 6) + 1;
+            $nourut = str_pad($nourut, 6, "0", STR_PAD_LEFT);
+            $idcart = $id . $tahun . $nourut;
+
+            Cart::create([
+                'codecart'      =>  $idcart,
+                'product_id'    =>  $product,
+                'status'        =>  1,
+                'users_id'      =>  Auth::user()->id,
+            ]);
+        }
+
+        return redirect('cart')->with('success-message', 'Data Ditambahkan Ke Keranjang');
+    }
+
+    public function deletecart($id)
+    {
+        $cart = Cart::where('id', $id)->delete();
+        return redirect('cart')->with('success-message', 'Data Success Dihapus');
+    }
 }
