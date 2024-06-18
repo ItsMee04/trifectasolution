@@ -184,120 +184,121 @@
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-4 ps-0">
-                    <aside class="product-order-list">
-                        <div class="head d-flex align-items-center justify-content-between w-100">
-                            <div class>
-                                <h5>Order List</h5>
-                                <span>Transaction ID : <i class="badge badge-danger"> #{{ $idtransaksi }}</i></span>
-                            </div>
-                        </div>
-                        <div class="customer-info block-section">
-                            <h6>Customer Information</h6>
-                            <div class="input-block d-flex align-items-center">
-                                <div class="flex-grow-1">
-                                    <select class="select">
-                                        <option>Walk in Customer</option>
-                                        @foreach ($customer as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                        @endforeach
-                                    </select>
+                    <form action="" method="POST">
+                        <aside class="product-order-list">
+                            <div class="head d-flex align-items-center justify-content-between w-100">
+                                <div class>
+                                    <h5>Order List</h5>
+                                    <span class="idtransaksi">Transaction ID :#{{ $idtransaksi }}</span>
                                 </div>
-                                <a href="#" class="btn btn-primary btn-icon" data-bs-toggle="modal"
-                                    data-bs-target="#create"><i data-feather="user-plus" class="feather-16"></i></a>
                             </div>
-                        </div>
-                        <div class="product-added block-section">
-                            <div class="head-text d-flex align-items-center justify-content-between">
-                                <h6 class="d-flex align-items-center mb-0">
-                                    Product Added<span class="count">{{ $count }}</span>
-                                </h6>
-                                @if ($cartactive == null)
-                                @else
-                                    <a href="javascript:void(0);" class="d-flex align-items-center text-danger"><span
-                                            class="me-1"><i data-feather="x" class="feather-16"></i></span>Clear
-                                        all</a>
-                                @endif
+                            <div class="customer-info block-section">
+                                <h6>Customer Information</h6>
+                                <div class="input-block d-flex align-items-center">
+                                    <div class="flex-grow-1">
+                                        <select class="select" id="customer">
+                                            <option>Walk in Customer</option>
+                                            @foreach ($customer as $item)
+                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <a href="#" class="btn btn-primary btn-icon" data-bs-toggle="modal"
+                                        data-bs-target="#create"><i data-feather="user-plus" class="feather-16"></i></a>
+                                </div>
                             </div>
-                            <div class="product-wrap">
-                                @foreach ($cart as $item)
-                                    <div class="product-list d-flex align-items-center justify-content-between">
-                                        <div class="d-flex align-items-center product-info" data-bs-toggle="modal"
-                                            data-bs-target="#products">
-                                            <a href="javascript:void(0);" class="img-bg">
-                                                <img src="{{ asset('storage/imageProduct/' . $item->product->image) }}"
-                                                    alt="Products" />
-                                            </a>
-                                            <div class="info">
-                                                <span>{{ $item->codecart }}</span>
-                                                <h6>
-                                                    <a href="javascript:void(0);">{{ $item->product->name }}</a>
-                                                </h6>
-                                                <p>{{ 'Rp.' . ' ' . number_format($item->product->sellingprice) }}</p>
+                            <div class="product-added block-section">
+                                <div class="head-text d-flex align-items-center justify-content-between">
+                                    <h6 class="d-flex align-items-center mb-0">
+                                        Product Added<span class="count">{{ $count }}</span>
+                                    </h6>
+                                    @if ($cartactive == null)
+                                    @else
+                                        <a href="javascript:void(0);" class="d-flex align-items-center text-danger"><span
+                                                class="me-1"><i data-feather="x" class="feather-16"></i></span>Clear
+                                            all</a>
+                                    @endif
+                                </div>
+                                <div class="product-wrap">
+                                    @foreach ($cart as $item)
+                                        <div class="product-list d-flex align-items-center justify-content-between">
+                                            <div class="d-flex align-items-center product-info" data-bs-toggle="modal"
+                                                data-bs-target="#products">
+                                                <a href="javascript:void(0);" class="img-bg">
+                                                    <img src="{{ asset('storage/imageProduct/' . $item->product->image) }}"
+                                                        alt="Products" />
+                                                </a>
+                                                <div class="info">
+                                                    <span>{{ $item->codecart }}</span>
+                                                    <h6>
+                                                        <a href="javascript:void(0);">{{ $item->product->name }}</a>
+                                                    </h6>
+                                                    <p>{{ 'Rp.' . ' ' . number_format($item->product->sellingprice) }}</p>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center action">
+                                                <a class="btn-icon delete-icon"
+                                                    onclick="confirm_modal('deletecart/{{ $item->id }}');"
+                                                    data-bs-toggle="modal" data-bs-target="#modal_delete">
+                                                    <i data-feather="trash-2" class="feather-14"></i>
+                                                </a>
                                             </div>
                                         </div>
-                                        <div class="d-flex align-items-center action">
-                                            <a class="btn-icon delete-icon"
-                                                onclick="confirm_modal('deletecart/{{ $item->id }}');"
-                                                data-bs-toggle="modal" data-bs-target="#modal_delete">
-                                                <i data-feather="trash-2" class="feather-14"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                </div>
                             </div>
-                        </div>
-                        <div class="block-section">
-                            <div class="selling-info">
-                                <div class="row">
-                                    <div class="col-12 col-sm-12">
-                                        <div class="input-block">
-                                            <label>Discount</label>
-                                            <select class="select" id="discount" name="discount"
-                                                onchange="gettingDiscount()">
-                                                <option>Choose Promo</option>
-                                                @foreach ($discount as $item)
-                                                    <option value="{{ $item->value }}"> {{ $item->name }} <strong>
-                                                            (Discount
-                                                            {{ $item->value }} %)
-                                                        </strong></option>
-                                                @endforeach
-                                            </select>
+                            <div class="block-section">
+                                <div class="selling-info">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-12">
+                                            <div class="input-block">
+                                                <label>Discount</label>
+                                                <select class="select" id="discount" name="discount"
+                                                    onchange="gettingDiscount()">
+                                                    <option>Choose Promo</option>
+                                                    @foreach ($discount as $item)
+                                                        <option value="{{ $item->value }}"> {{ $item->name }} <strong>
+                                                                (Discount
+                                                                {{ $item->value }} %)
+                                                            </strong></option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="order-total">
+                                    <table class="table table-responsive table-borderless">
+                                        <tr>
+                                            <td>Sub Total</td>
+                                            <td class="text-end"><span class="total"
+                                                    id="total">{{ 'Rp.' . ' ' . number_format($total) }}</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="danger">Discount</td>
+                                            <td class="danger text-end"><span class="dis" id="dis"></span>
+                                                %
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total</td>
+                                            <td class="text-end"><span class="subtotal" id="subtotal"></span></td>
+                                        </tr>
+                                    </table>
+                                </div>
                             </div>
-                            <div class="order-total">
-                                <table class="table table-responsive table-borderless">
-                                    <tr>
-                                        <td>Sub Total</td>
-                                        <td class="text-end"><span class="total"
-                                                id="total">{{ 'Rp.' . ' ' . number_format($total) }}</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="danger">Discount</td>
-                                        <td class="danger text-end"><span class="dis" id="dis"></span>
-                                            %
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Total</td>
-                                        <td class="text-end"><span class="subtotal" id="subtotal"></span></td>
-                                    </tr>
-                                </table>
+                            <div class="d-grid btn-block">
+                                <a class="btn btn-secondary" href="javascript:void(0);">
+                                    Grand Total : <span class="grandtotal" id="grandtotal"></span>
+                                </a>
                             </div>
-                        </div>
-                        <div class="d-grid btn-block">
-                            <a class="btn btn-secondary" href="javascript:void(0);">
-                                Grand Total : <span class="grandtotal" id="grandtotal"></span>
-                            </a>
-                        </div>
-                        <div class="btn-row d-sm-flex align-items-center justify-content-between">
-                            <a href="javascript:void(0);" class="btn btn-success btn-icon flex-fill"
-                                data-bs-toggle="modal" data-bs-target="#payment-completed"><span
-                                    class="me-1 d-flex align-items-center"><i data-feather="credit-card"
-                                        class="feather-16"></i></span>Payment</a>
-                        </div>
-                    </aside>
+                            <div class="btn-row d-sm-flex align-items-center justify-content-between">
+                                <a href="javascript:void(0);" class="btn btn-success btn-icon flex-fill"><span
+                                        class="me-1 d-flex align-items-center" id="payment" onclick="payment()"><i
+                                            data-feather="credit-card" class="feather-16"></i></span>Payment</a>
+                            </div>
+                        </aside>
+                    </form>
                 </div>
             </div>
         </div>
@@ -351,6 +352,15 @@
 
             document.querySelector('.subtotal').textContent = rupiah;
             document.querySelector('.grandtotal').textContent = rupiah;
+        }
+    </script>
+
+    <script>
+        function payment() {
+            idtransaksi = document.querySelector('.idtransaksi').textContent.replace("Transaction ID :#", "");
+            customer = document.querySelector('#customer').value;
+            console.log(idtransaksi)
+            console.log(customer)
         }
     </script>
 @endsection
