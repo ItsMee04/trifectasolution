@@ -56,6 +56,12 @@ class CartController extends Controller
 
         $discount = Discount::where('status', 1)->get();
 
+        $total = Cart::leftjoin('product', 'cart.product_id', 'product.id')
+            ->select('product.sellingprice', 'product.weight')
+            ->where('cart.status', 1)
+            ->where('cart.users_id', Auth::user()->id)
+            ->sum(DB::raw('product.sellingprice * product.weight'));
+
         return view('admin.cart', [
             'type'          => $type,
             'typecincin'    => $typecincin,
@@ -73,6 +79,7 @@ class CartController extends Controller
             'cartactive'    => $cartactive,
             'cart'          => $cart,
             'discount'      => $discount,
+            'total'         => $total
         ]);
     }
 

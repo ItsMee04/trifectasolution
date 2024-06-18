@@ -252,7 +252,8 @@
                                     <div class="col-12 col-sm-12">
                                         <div class="input-block">
                                             <label>Discount</label>
-                                            <select class="select" id="dicount" name="discount">
+                                            <select class="select" id="discount" name="discount"
+                                                onchange="gettingDiscount()">
                                                 <option>Choose Promo</option>
                                                 @foreach ($discount as $item)
                                                     <option value="{{ $item->value }}"> {{ $item->name }} <strong>
@@ -269,26 +270,25 @@
                                 <table class="table table-responsive table-borderless">
                                     <tr>
                                         <td>Sub Total</td>
-                                        <td class="text-end">$60,454</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Sub Total</td>
-                                        <td class="text-end">$60,454</td>
+                                        <td class="text-end"><span class="total"
+                                                id="total">{{ 'Rp.' . ' ' . number_format($total) }}</span></td>
                                     </tr>
                                     <tr>
                                         <td class="danger">Discount</td>
-                                        <td class="danger text-end"><span id="dis"></span></td>
+                                        <td class="danger text-end"><span class="dis" id="dis"></span>
+                                            %
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Total</td>
-                                        <td class="text-end">$64,024.5</td>
+                                        <td class="text-end"><span class="subtotal" id="subtotal"></span></td>
                                     </tr>
                                 </table>
                             </div>
                         </div>
                         <div class="d-grid btn-block">
                             <a class="btn btn-secondary" href="javascript:void(0);">
-                                Grand Total : $64,024.5
+                                Grand Total : <span class="grandtotal" id="grandtotal"></span>
                             </a>
                         </div>
                         <div class="btn-row d-sm-flex align-items-center justify-content-between">
@@ -330,9 +330,27 @@
     </script>
 
     <script>
-        $('#discount').on('change', function() {
-            const selectedPackage = $('#discount').val();
-            $('#dis').text(selectedPackage);
-        });
+        function gettingDiscount() {
+
+            selectElement =
+                document.querySelector('#discount');
+            output = selectElement.value;
+            document.querySelector('.dis').textContent = output;
+
+            total = document.querySelector('.total').textContent.replace("Rp.", "").replace(",", "").replace(',', "");
+            discount = document.querySelector('.dis').innerHTML;
+            subtotaldiscount = parseInt(total * discount) / 100;
+
+            subtotal = parseInt(total - subtotaldiscount);
+
+            rupiah = new Intl.NumberFormat("id", {
+                style: "currency",
+                currency: "IDR",
+                maximumFractionDigits: 0,
+            }).format(subtotal)
+
+            document.querySelector('.subtotal').textContent = rupiah;
+            document.querySelector('.grandtotal').textContent = rupiah;
+        }
     </script>
 @endsection
