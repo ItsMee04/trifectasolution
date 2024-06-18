@@ -68,8 +68,8 @@
                                                     data-bs-toggle="modal" href="#modaldetail{{ $item->id }}">
                                                     <i data-feather="eye" class="feather-eye"></i>
                                                 </a>
-                                                <a class="me-2 p-2" data-bs-effect="effect-sign" data-bs-toggle="modal"
-                                                    href="#modaledit{{ $item->id }}">
+                                                <a class="modal-effect me-2 p-2" data-bs-effect="effect-super-scaled"
+                                                    data-bs-toggle="modal" href="#modaledit{{ $item->id }}">
                                                     <i data-feather="edit" class="feather-edit"></i>
                                                 </a>
                                                 <a class="me-2 p-2"
