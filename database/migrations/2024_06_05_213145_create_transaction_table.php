@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('transaction', function (Blueprint $table) {
             $table->id();
-            $table->integer('transaction_id');
-            $table->unsignedBigInteger('cart_id');
+            $table->string('transaction_id');
+            $table->string('cart_id');
             $table->unsignedBigInteger('customer_id');
             $table->date('purchase');
             $table->bigInteger('total');
@@ -22,7 +22,6 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('cart_id')->references('id')->on('cart')->onDelete('cascade');
             $table->foreign('customer_id')->references('id')->on('customer')->onDelete('cascade');
             $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
         });

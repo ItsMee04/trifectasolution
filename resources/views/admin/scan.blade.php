@@ -59,13 +59,6 @@
                         },
                         success: function(data) {
                             if (data) {
-                                var Toast = Swal.mixin({
-                                    toast: true,
-                                    position: "top-end",
-                                    showConfirmButton: false,
-                                    timer: 3000,
-                                });
-
                                 const successtoastExample = document.getElementById('successToastScan')
                                 const toast = new bootstrap.Toast(successtoastExample)
                                 toast.show()
@@ -79,7 +72,9 @@
                     });
                 })
                 .catch((error) => {
-                    alert("something wrong");
+                    const dangertoastExample = document.getElementById('dangerToastScan')
+                    const toast = new bootstrap.Toast(dangertoastExample)
+                    toast.show()
                 });
         }
 

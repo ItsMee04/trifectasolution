@@ -102,6 +102,7 @@ Route::middleware('auth')->group(function () {
         Route::get('cart', [CartController::class, 'index']);
         Route::get('addcart/{id}', [CartController::class, 'addcart']);
         Route::get('deletecart/{id}', [CartController::class, 'deletecart']);
+        Route::post('storecart', [CartController::class, 'store']);
 
         Route::get('logout', [AuthController::class, 'logout']);
     });

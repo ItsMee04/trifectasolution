@@ -16,6 +16,6 @@ class Transaction extends Model
         'customer_id',
         'purchase',
         'total',
-        'sales',
+        'users_id',
     ];
 }

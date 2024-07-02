@@ -184,8 +184,9 @@
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-4 ps-0">
-                    <form action="" method="POST">
-                        <aside class="product-order-list">
+                    <aside class="product-order-list">
+                        <form action="storecart" method="POST">
+                            @csrf
                             <div class="head d-flex align-items-center justify-content-between w-100">
                                 <div class>
                                     <h5>Order List</h5>
@@ -196,7 +197,7 @@
                                 <h6>Customer Information</h6>
                                 <div class="input-block d-flex align-items-center">
                                     <div class="flex-grow-1">
-                                        <select class="select" id="customer">
+                                        <select class="select" name="customer">
                                             <option>Walk in Customer</option>
                                             @foreach ($customer as $item)
                                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -293,12 +294,12 @@
                                 </a>
                             </div>
                             <div class="btn-row d-sm-flex align-items-center justify-content-between">
-                                <a href="javascript:void(0);" class="btn btn-success btn-icon flex-fill"><span
-                                        class="me-1 d-flex align-items-center" id="payment" onclick="payment()"><i
-                                            data-feather="credit-card" class="feather-16"></i></span>Payment</a>
+                                <button type="submit" class="btn btn-success btn-icon flex-fill"><span
+                                        class="me-1 d-flex align-items-center"><i data-feather="credit-card"
+                                            class="feather-16"></i></span>Payment</button>
                             </div>
-                        </aside>
-                    </form>
+                        </form>
+                    </aside>
                 </div>
             </div>
         </div>
@@ -352,15 +353,6 @@
 
             document.querySelector('.subtotal').textContent = rupiah;
             document.querySelector('.grandtotal').textContent = rupiah;
-        }
-    </script>
-
-    <script>
-        function payment() {
-            idtransaksi = document.querySelector('.idtransaksi').textContent.replace("Transaction ID :#", "");
-            customer = document.querySelector('#customer').value;
-            console.log(idtransaksi)
-            console.log(customer)
         }
     </script>
 @endsection

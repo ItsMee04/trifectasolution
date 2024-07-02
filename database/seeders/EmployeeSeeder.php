@@ -17,10 +17,12 @@ class EmployeeSeeder extends Seeder
             'name'          =>  'Indra Kusuma',
             'address'       =>  'Purwokerto',
             'phone'         =>  '081390469322',
+            'avatar'        =>  'admin.png',
+            'signature'     =>  'signature.png',
             'profession_id' =>  1,
-            'status'        => 1,
-            'created_at'     => now(),
-            'updated_at'    => now(),
+            'status'        =>  1,
+            'created_at'    =>  now(),
+            'updated_at'    =>  now(),
         ]);
     }
 }
