@@ -45,7 +45,7 @@
                                     </th>
                                     <th>Customer</th>
                                     <th>Address</th>
-                                    <th>Identity</th>
+                                    <th>Birthday</th>
                                     <th>Phone</th>
                                     <th>Status</th>
                                     <th class="no-sort">Action</th>
@@ -59,7 +59,7 @@
                                         </td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->address }}</td>
-                                        <td>{{ $item->identity }}</td>
+                                        <td>{{ $item->birthday }}</td>
                                         <td>{{ $item->phone }}</td>
                                         <td>
                                             @if ($item->status == 1)

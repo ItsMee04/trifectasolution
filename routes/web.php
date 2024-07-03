@@ -1,26 +1,27 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DiscountController;
-use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\ProfessionController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\ScanController;
-use App\Http\Controllers\SupplierController;
-use App\Http\Controllers\Type;
-use App\Http\Controllers\TypeController;
-use App\Http\Controllers\UserController;
-use App\Models\Employee;
 use App\Models\Role;
+use App\Models\Employee;
+use App\Http\Controllers\Type;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\ScanController;
+use App\Http\Controllers\TypeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DiscountController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProfessionController;
+use App\Http\Controllers\TransactionController;
 use SebastianBergmann\Comparator\TypeComparator;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use Symfony\Component\Finder\Iterator\CustomFilterIterator;
 
 /*
@@ -36,9 +37,9 @@ use Symfony\Component\Finder\Iterator\CustomFilterIterator;
 
 Route::get('/', function () {
     return view('index');
-})->middleware('auth');
+})->middleware('cheking');
 
-Route::get('login', [AuthController::class, 'index'])->name('login');
+Route::get('login', [AuthController::class, 'index'])->name('login')->middleware('cheking');
 Route::post('login', [AuthController::class, 'login']);
 
 Route::middleware('auth')->group(function () {
@@ -103,6 +104,8 @@ Route::middleware('auth')->group(function () {
         Route::get('addcart/{id}', [CartController::class, 'addcart']);
         Route::get('deletecart/{id}', [CartController::class, 'deletecart']);
         Route::post('storecart', [CartController::class, 'store']);
+
+        Route::get('orders', [TransactionController::class, 'index']);
 
         Route::get('logout', [AuthController::class, 'logout']);
     });

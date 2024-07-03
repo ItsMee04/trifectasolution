@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('purchase');
             $table->bigInteger('total');
             $table->unsignedBigInteger('users_id');
+            $table->integer('status')->default(1);
             $table->timestamps();
             $table->softDeletes();
 

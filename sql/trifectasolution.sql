@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 02, 2024 at 06:29 PM
--- Server version: 8.0.36
--- PHP Version: 8.3.4
+-- Generation Time: Jun 13, 2024 at 01:27 PM
+-- Server version: 8.0.37
+-- PHP Version: 8.3.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -39,6 +39,30 @@ CREATE TABLE `avatar` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` bigint UNSIGNED NOT NULL,
+  `codecart` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_id` bigint UNSIGNED NOT NULL,
+  `users_id` bigint UNSIGNED NOT NULL,
+  `status` int NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `codecart`, `product_id`, `users_id`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'C-00001', 1, 1, 1, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `category`
 --
 
@@ -57,8 +81,58 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `category`, `description`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'SURAT', '-', 1, '2024-06-01 01:32:39', '2024-06-01 01:32:39', NULL),
-(2, 'NON SURAT', '-', 1, '2024-06-01 01:32:51', '2024-06-01 01:32:51', NULL);
+(1, 'SURAT', '-', 1, '2024-06-13 12:46:10', '2024-06-13 12:46:10', NULL),
+(2, 'NON SURAT', '-', 1, '2024-06-13 12:46:24', '2024-06-13 12:46:24', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer`
+--
+
+CREATE TABLE `customer` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `identity` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `point` int NOT NULL DEFAULT '0',
+  `birthday` date NOT NULL,
+  `status` int NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`id`, `name`, `address`, `phone`, `identity`, `point`, `birthday`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Dimas', 'Purbalingga', '0813904789322', '3302260405960001', 0, '2024-06-13', 1, '2024-06-13 13:19:36', '2024-06-13 13:19:36', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `discount`
+--
+
+CREATE TABLE `discount` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` int NOT NULL,
+  `status` int NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `discount`
+--
+
+INSERT INTO `discount` (`id`, `name`, `value`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'PROMO IDUL ADHA', 10, 1, '2024-06-13 12:49:07', '2024-06-13 12:49:07', NULL);
 
 -- --------------------------------------------------------
 
@@ -85,7 +159,7 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`id`, `name`, `address`, `phone`, `profession_id`, `signature`, `avatar`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Indra Kusuma', 'Purwokerto', '081390469322', 1, NULL, NULL, 1, '2024-05-15 01:12:09', '2024-05-15 01:12:09', NULL);
+(1, 'Indra Kusuma', 'Purwokerto', '081390469322', 1, NULL, NULL, 1, '2024-06-13 12:44:54', '2024-06-13 12:44:54', NULL);
 
 -- --------------------------------------------------------
 
@@ -120,18 +194,23 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(22, '2014_10_011_151103_create_role_table', 1),
-(23, '2014_10_09_151024_create_profession_table', 1),
-(24, '2014_10_10_151054_create_employee_table', 1),
-(25, '2014_10_12_000000_create_users_table', 1),
-(26, '2014_10_12_100000_create_password_reset_tokens_table', 1),
-(27, '2019_08_19_000000_create_failed_jobs_table', 1),
-(28, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(29, '2024_05_21_104857_create_avatar_table', 2),
-(30, '2024_05_21_104907_create_signature_table', 2),
-(31, '2024_05_27_043300_create_category_table', 2),
-(32, '2024_05_27_053540_create_type_table', 2),
-(33, '2024_05_27_072243_create_product_table', 2);
+(1, '2014_10_011_151103_create_role_table', 1),
+(2, '2014_10_09_151024_create_profession_table', 1),
+(3, '2014_10_10_151054_create_employee_table', 1),
+(4, '2014_10_12_000000_create_users_table', 1),
+(5, '2014_10_12_100000_create_password_reset_tokens_table', 1),
+(6, '2019_08_19_000000_create_failed_jobs_table', 1),
+(7, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(8, '2024_05_21_104857_create_avatar_table', 1),
+(9, '2024_05_21_104907_create_signature_table', 1),
+(10, '2024_05_27_043300_create_category_table', 1),
+(11, '2024_05_27_053540_create_type_table', 1),
+(12, '2024_05_27_072243_create_product_table', 1),
+(13, '2024_06_05_141410_create_supplier_table', 1),
+(14, '2024_06_05_145718_create_customer_table', 1),
+(15, '2024_06_05_213036_create_cart_table', 1),
+(16, '2024_06_05_213145_create_transaction_table', 1),
+(17, '2024_06_10_201127_create_discount_table', 1);
 
 -- --------------------------------------------------------
 
@@ -174,8 +253,8 @@ CREATE TABLE `product` (
   `id` bigint UNSIGNED NOT NULL,
   `codeproduct` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sellingprice` bigint DEFAULT '0',
-  `purchaseprice` double DEFAULT '0',
+  `sellingprice` double DEFAULT NULL,
+  `purchaseprice` double DEFAULT NULL,
   `description` text COLLATE utf8mb4_unicode_ci,
   `type_id` bigint UNSIGNED NOT NULL,
   `category_id` bigint UNSIGNED NOT NULL,
@@ -193,7 +272,7 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `codeproduct`, `name`, `sellingprice`, `purchaseprice`, `description`, `type_id`, `category_id`, `weight`, `carat`, `image`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(6, 'P-2024000001', 'CINCIN', 460000, 0, 'Cincin', 1, 1, 2.80000000, 18.00000000, 'P-2024000001-1717326965.png', 1, '2024-06-02 04:16:05', '2024-06-02 04:16:05', NULL);
+(1, 'P-2024000001', 'CINCIN', 460000, NULL, '-', 1, 1, 2.90000000, 18.00000000, 'P-2024000001-1718282891.jpg', 1, '2024-06-13 12:48:11', '2024-06-13 12:48:11', NULL);
 
 -- --------------------------------------------------------
 
@@ -215,7 +294,7 @@ CREATE TABLE `profession` (
 --
 
 INSERT INTO `profession` (`id`, `profession`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'ADMIN', 1, '2024-05-15 01:11:59', '2024-05-15 01:11:59', NULL);
+(1, 'ADMIN', 1, '2024-06-13 12:44:47', '2024-06-13 12:44:47', NULL);
 
 -- --------------------------------------------------------
 
@@ -237,7 +316,7 @@ CREATE TABLE `role` (
 --
 
 INSERT INTO `role` (`id`, `role`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Admin', 1, '2024-05-15 01:12:13', '2024-05-15 01:12:13', NULL);
+(1, 'Admin', 1, '2024-06-13 12:45:01', '2024-06-13 12:45:01', NULL);
 
 -- --------------------------------------------------------
 
@@ -257,6 +336,42 @@ CREATE TABLE `signature` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `supplier`
+--
+
+CREATE TABLE `supplier` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` int NOT NULL DEFAULT '2',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transaction`
+--
+
+CREATE TABLE `transaction` (
+  `id` bigint UNSIGNED NOT NULL,
+  `transaction_id` int NOT NULL,
+  `cart_id` bigint UNSIGNED NOT NULL,
+  `customer_id` bigint UNSIGNED NOT NULL,
+  `purchase` date NOT NULL,
+  `total` bigint NOT NULL,
+  `users_id` bigint UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `type`
 --
 
@@ -264,6 +379,7 @@ CREATE TABLE `type` (
   `id` bigint UNSIGNED NOT NULL,
   `type` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` int NOT NULL DEFAULT '2',
+  `icon` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -273,11 +389,11 @@ CREATE TABLE `type` (
 -- Dumping data for table `type`
 --
 
-INSERT INTO `type` (`id`, `type`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'CINCIN', 1, '2024-06-01 01:29:23', '2024-06-01 01:29:23', NULL),
-(2, 'GELANG', 1, '2024-06-01 01:29:43', '2024-06-01 01:29:43', NULL),
-(3, 'KALUNG', 1, '2024-06-01 01:29:49', '2024-06-01 01:29:49', NULL),
-(4, 'ANTING', 1, '2024-06-01 01:29:57', '2024-06-01 01:29:57', NULL);
+INSERT INTO `type` (`id`, `type`, `status`, `icon`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'CINCIN', 1, 'CINCIN-1718282816.png', '2024-06-13 12:46:56', '2024-06-13 12:46:56', NULL),
+(2, 'KALUNG', 1, 'KALUNG-1718282828.png', '2024-06-13 12:47:08', '2024-06-13 12:47:08', NULL),
+(3, 'GELANG', 1, 'GELANG-1718282841.png', '2024-06-13 12:47:21', '2024-06-13 12:47:21', NULL),
+(4, 'ANTING', 1, 'ANTING-1718282850.png', '2024-06-13 12:47:30', '2024-06-13 12:47:30', NULL);
 
 -- --------------------------------------------------------
 
@@ -303,7 +419,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `employee_id`, `role_id`, `status`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'indrakusuma', '$2y$12$BDpJQs5uJ8D/QBK0gWi7Fe/o.YJKEwiQ/E8zLAXTlN1T8.rHpNlfK', 1, 1, 1, NULL, '2024-05-15 01:12:24', '2024-05-15 01:12:24', NULL);
+(1, 'indrakusuma', '$2y$12$Wnnmuc8pGn38zWMe9vby9eO4x7chTlGL8/UsxNLfljUo3MOlaidI6', 1, 1, 1, NULL, '2024-06-13 12:45:05', '2024-06-13 12:45:05', NULL);
 
 --
 -- Indexes for dumped tables
@@ -317,9 +433,29 @@ ALTER TABLE `avatar`
   ADD KEY `avatar_employee_id_foreign` (`employee_id`);
 
 --
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `cart_product_id_foreign` (`product_id`),
+  ADD KEY `cart_users_id_foreign` (`users_id`);
+
+--
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `discount`
+--
+ALTER TABLE `discount`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -385,6 +521,21 @@ ALTER TABLE `signature`
   ADD KEY `signature_employee_id_foreign` (`employee_id`);
 
 --
+-- Indexes for table `supplier`
+--
+ALTER TABLE `supplier`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `transaction`
+--
+ALTER TABLE `transaction`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `transaction_cart_id_foreign` (`cart_id`),
+  ADD KEY `transaction_customer_id_foreign` (`customer_id`),
+  ADD KEY `transaction_users_id_foreign` (`users_id`);
+
+--
 -- Indexes for table `type`
 --
 ALTER TABLE `type`
@@ -409,10 +560,28 @@ ALTER TABLE `avatar`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `customer`
+--
+ALTER TABLE `customer`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `discount`
+--
+ALTER TABLE `discount`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `employee`
@@ -430,7 +599,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -442,7 +611,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `profession`
@@ -460,6 +629,18 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `signature`
 --
 ALTER TABLE `signature`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `supplier`
+--
+ALTER TABLE `supplier`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `transaction`
+--
+ALTER TABLE `transaction`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
@@ -485,6 +666,13 @@ ALTER TABLE `avatar`
   ADD CONSTRAINT `avatar_employee_id_foreign` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`) ON DELETE CASCADE;
 
 --
+-- Constraints for table `cart`
+--
+ALTER TABLE `cart`
+  ADD CONSTRAINT `cart_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `cart_users_id_foreign` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `employee`
 --
 ALTER TABLE `employee`
@@ -502,6 +690,14 @@ ALTER TABLE `product`
 --
 ALTER TABLE `signature`
   ADD CONSTRAINT `signature_employee_id_foreign` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `transaction`
+--
+ALTER TABLE `transaction`
+  ADD CONSTRAINT `transaction_cart_id_foreign` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `transaction_customer_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `transaction_users_id_foreign` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `users`
