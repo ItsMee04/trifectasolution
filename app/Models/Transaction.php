@@ -16,6 +16,7 @@ class Transaction extends Model
         'transaction_id',
         'cart_id',
         'customer_id',
+        'discount',
         'purchase',
         'total',
         'users_id',
@@ -24,5 +25,10 @@ class Transaction extends Model
     public function customer(): BelongsTo
     {
         return $this->belongsTo(Customer::class);
+    }
+
+    public function product(): BelongsTo
+    {
+        return $this->belongsTo(Product::class);
     }
 }

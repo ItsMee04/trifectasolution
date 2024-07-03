@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('transaction_id');
             $table->string('cart_id');
             $table->unsignedBigInteger('customer_id');
+            $table->integer('discount');
             $table->date('purchase');
             $table->bigInteger('total');
             $table->unsignedBigInteger('users_id');

@@ -106,6 +106,7 @@ Route::middleware('auth')->group(function () {
         Route::post('storecart', [CartController::class, 'store']);
 
         Route::get('orders', [TransactionController::class, 'index']);
+        Route::get('order-details/{id}', [TransactionController::class, 'detailOrders']);
 
         Route::get('logout', [AuthController::class, 'logout']);
     });

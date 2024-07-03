@@ -258,10 +258,9 @@
                                                     onchange="gettingDiscount()">
                                                     <option>Choose Promo</option>
                                                     @foreach ($discount as $item)
-                                                        <option value="{{ $item->value }}"> {{ $item->name }} <strong>
-                                                                (Discount
-                                                                {{ $item->value }} %)
-                                                            </strong></option>
+                                                        <option value="{{ $item->value }}">
+                                                            {{ $item->value }}
+                                                        </option>
                                                     @endforeach
                                                 </select>
                                             </div>

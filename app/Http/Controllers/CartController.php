@@ -224,6 +224,7 @@ class CartController extends Controller
             'transaction_id'    =>  $newtransaction_id,
             'cart_id'           =>  $cart_id,
             'customer_id'       =>  $customer,
+            'discount'          =>  $request->discount,
             'purchase'          =>  $datepurchase,
             'total'             =>  $grandtotal,
             'users_id'          =>  $users,
