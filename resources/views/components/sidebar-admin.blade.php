@@ -87,14 +87,14 @@
                                 class="@if (request()->route()->uri == 'cart' ||
                                         request()->route()->uri == 'orders' ||
                                         request()->route()->uri == 'orders/{id}' ||
-                                        request()->route()->uri == 'orders-details/{id}') active subdrop @endif"><i
+                                        request()->route()->uri == 'order-details/{id}') active subdrop @endif"><i
                                     data-feather="shopping-cart"></i><span>Transaction</span><span
                                     class="menu-arrow"></span></a>
                             <ul>
                                 <li><a href="/cart" class="@if (request()->route()->uri == 'cart' || request()->route()->uri == 'shopping-cart/{id}') active @endif">Shopping
                                         Cart</a></li>
                                 <li><a href="/orders"
-                                        class="@if (request()->route()->uri == 'orders' || request()->route()->uri == 'orders-details/{id}') active @endif">Orders</a></li>
+                                        class="@if (request()->route()->uri == 'orders' || request()->route()->uri == 'order-details/{id}') active @endif">Orders</a></li>
                             </ul>
                         </li>
                         <li class="submenu">

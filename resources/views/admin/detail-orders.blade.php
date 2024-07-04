@@ -78,6 +78,11 @@
                                                                 style="vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;">
                                                                 Payment Status</font>
                                                         </font><br>
+                                                        <font style="vertical-align: inherit;">
+                                                            <font
+                                                                style="vertical-align: inherit;font-size: 14px;color:#000;font-weight: 400;">
+                                                                Sales</font>
+                                                        </font><br>
                                                     </td>
                                                     <td
                                                         style="padding:5px;vertical-align:top;text-align:right;padding-bottom:20px">
@@ -99,6 +104,10 @@
                                                                 </font>
                                                             @endif
                                                         </font><br>
+                                                        <font
+                                                            style="vertical-align: inherit;font-size: 14px;color:#000000;font-weight: 400;">
+                                                            <strong>{{ $name }}</strong>
+                                                        </font>
                                                     </td>
                                                 </tr>
                                             </tbody>
