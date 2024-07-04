@@ -26,6 +26,12 @@
                 <div class="card-body">
                     <div class="card-sales-split">
                         <h2>Detail Transaction : {{ $orders->transaction_id }}</h2>
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0);"><i data-feather="printer" class="feather-rotate-ccw"
+                                        data-bs-toggle="tooltip" data-bs-placement="top" title="Print Nota"></i></a>
+                            </li>
+                        </ul>
                     </div>
                     <div class="invoice-box table-height"
                         style="max-width: 1600px;width:100%;overflow: auto;margin:15px auto;padding: 0;font-size: 14px;line-height: 24px;color: #555;">
@@ -84,11 +90,13 @@
                                                             @if ($orders->status == 1)
                                                                 <font
                                                                     style="vertical-align: inherit;font-size: 14px;color:#ff0000;font-weight: 400;">
-                                                                    Un Paid</font>
+                                                                    <span class="badge bg-danger">UN PAID</span>
+                                                                </font>
                                                             @else
                                                                 <font
                                                                     style="vertical-align: inherit;font-size: 14px;color:#2E7D32;font-weight: 400;">
-                                                                    Paid</font>
+                                                                    <span class="badge bg-success">PAID</span>
+                                                                </font>
                                                             @endif
                                                         </font><br>
                                                     </td>
@@ -108,11 +116,11 @@
                                     </td>
                                     <td
                                         style="padding: 5px;vertical-align: middle;font-weight: 600;color: #5E5873;font-size: 14px;padding: 10px; ">
-                                        Price
+                                        Carat
                                     </td>
                                     <td
                                         style="padding: 5px;vertical-align: middle;font-weight: 600;color: #5E5873;font-size: 14px;padding: 10px; ">
-                                        Disc
+                                        Price
                                     </td>
                                     <td
                                         style="padding: 5px;vertical-align: middle;font-weight: 600;color: #5E5873;font-size: 14px;padding: 10px; ">
@@ -120,7 +128,7 @@
                                     </td>
                                     <td
                                         style="padding: 5px;vertical-align: middle;font-weight: 600;color: #5E5873;font-size: 14px;padding: 10px; ">
-                                        Print Surat Barang
+                                        Print Surat Product
                                     </td>
                                 </tr>
                                 @foreach ($order as $item)
@@ -134,13 +142,13 @@
                                             {{ $item->product->weight }} grams
                                         </td>
                                         <td style="padding: 10px;vertical-align: top; ">
+                                            {{ $item->product->carat }}
+                                        </td>
+                                        <td style="padding: 10px;vertical-align: top; ">
                                             {{ 'Rp.' . ' ' . number_format($item->product->sellingprice) }}
                                         </td>
                                         <td style="padding: 10px;vertical-align: top; ">
-                                            {{ $orders->discount }} %
-                                        </td>
-                                        <td style="padding: 10px;vertical-align: top; ">
-                                            {{ 'Rp.' . ' ' . number_format($orders->total) }}
+                                            {{ 'Rp.' . ' ' . number_format($item->total) }}
                                         </td>
                                         <td style="padding: 10px;vertical-align: top; " align="center">
                                             <a data-bs-toggle="tooltip" data-bs-placement="top" title="Print"
@@ -157,8 +165,16 @@
                                 <div class="total-order w-100 max-widthauto m-auto mb-4">
                                     <ul>
                                         <li class="total">
+                                            <h4>Sub Total</h4>
+                                            <h5 class="text-danger">{{ 'Rp.' . ' ' . number_format($subtotal) }}</h5>
+                                        </li>
+                                        <li class="total">
+                                            <h4>Discount</h4>
+                                            <h5>{{ $orders->discount }} %</h5>
+                                        </li>
+                                        <li class="total">
                                             <h4>Grand Total</h4>
-                                            <h5>{{ 'Rp.' . ' ' . number_format($orders->total) }}</h5>
+                                            <h5 class="text-success">{{ 'Rp.' . ' ' . number_format($orders->total) }}</h5>
                                         </li>
                                     </ul>
                                 </div>

@@ -14,6 +14,7 @@ class Cart extends Model
     [
         'codecart',
         'product_id',
+        'total',
         'users_id',
         'status',
     ];

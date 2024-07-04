@@ -80,7 +80,7 @@
                                                     </a>
                                                 @else
                                                     <a class="me-2 p-2 mb-0" data-bs-effect="effect-sign"
-                                                        data-bs-toggle="modal" href="#modaldetail{{ $item->id }}">
+                                                        href="order-details/{{ $item->transaction_id }}">
                                                         <i data-feather="eye" class="action-eye"></i>
                                                     </a>
                                                 @endif

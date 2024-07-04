@@ -1,13 +1,13 @@
 <div class="header">
 
     <div class="header-left active">
-        <a href="dashboard" class="logo logo-normal">
+        <a href="/dashboard" class="logo logo-normal">
             <img src="{{ asset('assets') }}/img/logo.png" alt>
         </a>
-        <a href="dashboard" class="logo logo-white">
+        <a href="/dashboard" class="logo logo-white">
             <img src="{{ asset('assets') }}/img/logo.png" alt>
         </a>
-        <a href="dashboard" class="logo-small">
+        <a href="/dashboard" class="logo-small">
             <img src="{{ asset('assets') }}/img/logo-small.png" alt>
         </a>
         <a id="toggle_btn" href="javascript:void(0);">

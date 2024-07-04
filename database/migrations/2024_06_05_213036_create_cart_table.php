@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('codecart', 100);
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('users_id');
+            $table->bigInteger('total');
             $table->integer('status');
             $table->timestamps();
             $table->softDeletes();

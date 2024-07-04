@@ -107,6 +107,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('orders', [TransactionController::class, 'index']);
         Route::get('order-details/{id}', [TransactionController::class, 'detailOrders']);
+        Route::get('confirm-payment/{id}', [TransactionController::class, 'confirm']);
 
         Route::get('logout', [AuthController::class, 'logout']);
     });

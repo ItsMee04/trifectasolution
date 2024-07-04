@@ -100,6 +100,15 @@ class CartController extends Controller
         $product = Product::where('codeproduct', $id)->first()->id;
         $codecart = Cart::latest('codecart')->first();
 
+        //MENCARI NILAI HARGA DARI PRODUCT CART YANG ACTIVE
+        $harga = Product::where('id', $product)->first()->sellingprice;
+
+        //MENCARI NILAI BERAT DARI PRODUCT CART YANG ACTIVE
+        $berat = Product::where('id', $product)->first()->weight;
+
+        //TOTAL HARGA
+        $total = $harga * $berat;
+
         $id = "C-";
         $tahun = date('Y');
 
@@ -110,6 +119,7 @@ class CartController extends Controller
             Cart::create([
                 'codecart'      =>  $idcart,
                 'product_id'    =>  $product,
+                'total'         =>  $total,
                 'status'        =>  1,
                 'users_id'      =>  Auth::user()->id,
             ]);
@@ -120,6 +130,7 @@ class CartController extends Controller
             Cart::create([
                 'codecart'      =>  $idcart,
                 'product_id'    =>  $product,
+                'total'         =>  $total,
                 'status'        =>  1,
                 'users_id'      =>  Auth::user()->id,
             ]);
@@ -131,6 +142,7 @@ class CartController extends Controller
             Cart::create([
                 'codecart'      =>  $idcart,
                 'product_id'    =>  $product,
+                'total'         =>  $total,
                 'status'        =>  1,
                 'users_id'      =>  Auth::user()->id,
             ]);
@@ -200,14 +212,10 @@ class CartController extends Controller
             ->first()
             ->product_id;
 
-        //MENCARI NILAI HARGA DARI PRODUCT CART YANG ACTIVE
-        $harga = Product::where('id', $product)->first()->sellingprice;
-
-        //MENCARI NILAI BERAT DARI PRODUCT CART YANG ACTIVE
-        $berat = Product::where('id', $product)->first()->weight;
-
-        //TOTAL HARGA
-        $total = $harga * $berat;
+        //MENCARI HARGA TOTAL DARI PRODUCT CART YANG ACTIVE
+        $total  = Cart::where('users_id', Auth::user()->id)
+            ->where('status', 1)
+            ->sum('total');
 
         //MENGAMBIL NILAI DISCOUNT
         $promo = $request->discount;
