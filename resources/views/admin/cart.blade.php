@@ -14,7 +14,7 @@
                                     <img src="assets/img/categories/category-01.png" alt="Categories" />
                                 </a>
                                 <h6><a href="javascript:void(0);">All Categories</a></h6>
-                                <span>80 Items</span>
+                                <span>{{ $product->count() }} items</span>
                             </li>
                             @foreach ($type as $item)
                                 <li id="{{ $item->id }}">
@@ -22,7 +22,7 @@
                                         <img src="{{ asset('storage/Icon/' . $item->icon) }}" />
                                     </a>
                                     <h6><a href="javascript:void(0);">{{ $item->type }}</a></h6>
-                                    <span>4 Items</span>
+                                    <span>{{ $product->where('type_id', $item->id)->count() }} items</span>
                                 </li>
                             @endforeach
                         </ul>
