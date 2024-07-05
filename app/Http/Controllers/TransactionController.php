@@ -46,4 +46,24 @@ class TransactionController extends Controller
 
         return redirect('orders')->with('success-message', 'Payments Confirmed');
     }
+
+    public function printOrderTransaction($id)
+    {
+        $orders     = Transaction::where('transaction_id', $id)->first();
+        $cart_id    = Transaction::where('transaction_id', $id)->first()->cart_id;
+        $users    = Transaction::where('transaction_id', $id)->first()->users_id;
+
+        $order      = Cart::where('codecart', $cart_id)->get();
+        $subtotal   = Cart::where('codecart', $cart_id)->sum('total');
+
+        $employee_id      = User::where('id', $users)->first()->employee_id;
+        $employee   = Employee::where('id', $employee_id)->first()->name;
+
+        return view('report.report-transaction', [
+            'orders'    => $orders,
+            'order'     => $order,
+            'subtotal'  => $subtotal,
+            'name'      => $employee
+        ]);
+    }
 }

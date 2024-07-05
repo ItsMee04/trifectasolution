@@ -20,6 +20,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\TransactionController;
+use App\Models\Transaction;
 use SebastianBergmann\Comparator\TypeComparator;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use Symfony\Component\Finder\Iterator\CustomFilterIterator;
@@ -108,6 +109,7 @@ Route::middleware('auth')->group(function () {
         Route::get('orders', [TransactionController::class, 'index']);
         Route::get('order-details/{id}', [TransactionController::class, 'detailOrders']);
         Route::get('confirm-payment/{id}', [TransactionController::class, 'confirm']);
+        Route::get('print-order-transaction/{id}', [TransactionController::class, 'printOrderTransaction']);
 
         Route::get('logout', [AuthController::class, 'logout']);
     });

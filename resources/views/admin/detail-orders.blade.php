@@ -28,7 +28,12 @@
                         <h2>Detail Transaction : {{ $orders->transaction_id }}</h2>
                         <ul>
                             <li>
-                                <a href="javascript:void(0);"><i data-feather="printer" class="feather-rotate-ccw"
+                                <a href="/print-order-transaction/{{ $orders->transaction_id }}" target="__blank"><i
+                                        data-feather="printer" class="feather-rotate-ccw" data-bs-toggle="tooltip"
+                                        data-bs-placement="top" title="Print Nota"></i></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);"><i data-feather="download" class="feather-rotate-ccw"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="Print Nota"></i></a>
                             </li>
                         </ul>
@@ -183,7 +188,8 @@
                                         </li>
                                         <li class="total">
                                             <h4>Grand Total</h4>
-                                            <h5 class="text-success">{{ 'Rp.' . ' ' . number_format($orders->total) }}</h5>
+                                            <h5 class="text-success">{{ 'Rp.' . ' ' . number_format($orders->total) }}
+                                            </h5>
                                         </li>
                                     </ul>
                                 </div>

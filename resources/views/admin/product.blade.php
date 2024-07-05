@@ -68,7 +68,7 @@
                                                     </a>
                                                 @else
                                                     <a href="javascript:void(0);" class="product-img stock-img">
-                                                        <img src="{{ asset('assets') }}/img/notfound/notfound.png"
+                                                        <img src="{{ asset('assets') }}/img/notfound/not found.png"
                                                             alt="product">
                                                     </a>
                                                 @endif
